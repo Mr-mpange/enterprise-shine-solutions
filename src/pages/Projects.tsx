@@ -7,6 +7,11 @@ import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
 import tailoringImage from "@/assets/tailoring-services.jpg";
+import fireTraining from "@/assets/fire-training.jpg";
+import pestInspection from "@/assets/pest-inspection.jpg";
+import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
+import uniformShowcase from "@/assets/uniform-showcase.jpg";
+import happyClients from "@/assets/happy-clients.jpg";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -43,30 +48,58 @@ const Projects = () => {
     {
       title: "Industrial Complex Fire Training",
       category: "fire",
-      image: fireImage,
+      image: fireTraining,
       description: "Fire safety training program for 200+ industrial workers and management.",
       client: "Industrial Complex Ltd",
     },
     {
       title: "School Termite Treatment",
       category: "fumigation",
-      image: fumigationImage,
+      image: pestInspection,
       description: "Comprehensive termite control and prevention for educational institution.",
       client: "Premier Academy",
     },
     {
       title: "Mall Deep Cleaning Services",
       category: "cleaning",
-      image: cleaningImage,
+      image: beforeAfterCleaning,
       description: "Post-construction deep cleaning and ongoing maintenance for shopping mall.",
       client: "City Mall Dar",
     },
     {
       title: "Security Uniforms & Gear",
       category: "tailoring",
-      image: tailoringImage,
+      image: uniformShowcase,
       description: "Reflective safety uniforms and protective gear for security company.",
       client: "SecureGuard Services",
+    },
+    {
+      title: "Corporate Office Fire Safety Audit",
+      category: "fire",
+      image: fireImage,
+      description: "Comprehensive fire safety audit and equipment installation for corporate headquarters.",
+      client: "Finance Corporation",
+    },
+    {
+      title: "Restaurant Pest Management",
+      category: "fumigation",
+      image: fumigationImage,
+      description: "Monthly pest control and sanitation services for restaurant chain.",
+      client: "Fine Dining Group",
+    },
+    {
+      title: "Hotel Chain Uniform Program",
+      category: "tailoring",
+      image: tailoringImage,
+      description: "Complete uniform design and production for hospitality staff across 3 hotels.",
+      client: "Luxury Hotels Tanzania",
+    },
+    {
+      title: "Factory Floor Cleaning",
+      category: "cleaning",
+      image: cleaningImage,
+      description: "Industrial cleaning and maintenance services for manufacturing facility.",
+      client: "Production Industries Ltd",
     },
   ];
 

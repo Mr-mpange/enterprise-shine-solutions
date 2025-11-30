@@ -8,6 +8,10 @@ import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
 import tailoringImage from "@/assets/tailoring-services.jpg";
+import fireTraining from "@/assets/fire-training.jpg";
+import pestInspection from "@/assets/pest-inspection.jpg";
+import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
+import uniformShowcase from "@/assets/uniform-showcase.jpg";
 
 const Services = () => {
   const services = [
@@ -16,6 +20,7 @@ const Services = () => {
       icon: Flame,
       title: "Fire Services & Safety Solutions",
       image: fireImage,
+      galleryImage: fireTraining,
       description: "Comprehensive fire protection services to keep your premises safe and compliant with all safety regulations.",
       features: [
         "Fire Equipment Supply & Installation",
@@ -34,6 +39,7 @@ const Services = () => {
       icon: Bug,
       title: "Fumigation & Pest Control",
       image: fumigationImage,
+      galleryImage: pestInspection,
       description: "Professional pest management solutions using eco-friendly methods to protect your property from unwanted pests.",
       features: [
         "Residential Pest Control",
@@ -52,6 +58,7 @@ const Services = () => {
       icon: Sparkles,
       title: "General Cleanliness & Environmental Care",
       image: cleaningImage,
+      galleryImage: beforeAfterCleaning,
       description: "Professional cleaning services tailored to meet the unique needs of your facility with trained staff and modern equipment.",
       features: [
         "Office Cleaning Services",
@@ -70,6 +77,7 @@ const Services = () => {
       icon: Shirt,
       title: "Ushanaji (Tailoring & Uniform Production)",
       image: tailoringImage,
+      galleryImage: uniformShowcase,
       description: "Custom tailoring services for corporate uniforms, safety gear, and branded workwear to enhance your professional image.",
       features: [
         "Corporate Uniform Design & Production",
@@ -154,12 +162,21 @@ const Services = () => {
                   transition={{ duration: 0.8 }}
                   className={index % 2 === 1 ? "md:order-1" : ""}
                 >
-                  <div className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="space-y-4">
+                    <div className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-[350px] object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                      <img
+                        src={service.galleryImage}
+                        alt={`${service.title} - Additional view`}
+                        className="w-full h-[200px] object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                   </div>
                 </motion.div>
               </div>

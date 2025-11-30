@@ -2,6 +2,11 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Target, Eye, Heart, Users, Award, TrendingUp } from "lucide-react";
+import teamPhoto from "@/assets/team-photo.jpg";
+import officeInterior from "@/assets/office-interior.jpg";
+import partnership from "@/assets/partnership.jpg";
+import companyBuilding from "@/assets/company-building.jpg";
+import certificationsDisplay from "@/assets/certifications-display.jpg";
 
 const About = () => {
   return (
@@ -28,7 +33,7 @@ const About = () => {
         {/* Company Overview */}
         <section className="py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -75,6 +80,25 @@ const About = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* Image Gallery Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
+            >
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                <img src={companyBuilding} alt="Company headquarters" className="w-full h-64 object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                <img src={officeInterior} alt="Modern office interior" className="w-full h-64 object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                <img src={teamPhoto} alt="Our professional team" className="w-full h-64 object-cover" />
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -133,7 +157,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Key Strengths */}
+        {/* Key Strengths with Images */}
         <section className="py-24 bg-background">
           <div className="container mx-auto px-4">
             <motion.div
@@ -149,55 +173,72 @@ const About = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col items-center text-center p-6"
+                transition={{ duration: 0.8 }}
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Users className="w-8 h-8 text-primary" />
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <img src={partnership} alt="Professional partnership" className="w-full h-96 object-cover" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Expert Team</h3>
-                <p className="text-muted-foreground">
-                  Highly trained professionals with decades of combined experience
-                </p>
               </motion.div>
-
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="flex flex-col items-center text-center p-6"
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
               >
-                <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <Award className="w-8 h-8 text-secondary" />
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="w-7 h-7 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">Expert Team</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Highly trained professionals with decades of combined experience delivering exceptional results
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Certified Excellence</h3>
-                <p className="text-muted-foreground">
-                  ISO certified with full regulatory compliance and accreditations
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-col items-center text-center p-6"
-              >
-                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                  <TrendingUp className="w-8 h-8 text-accent" />
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Award className="w-7 h-7 text-secondary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">Certified Excellence</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      ISO certified with full regulatory compliance and industry accreditations
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Proven Track Record</h3>
-                <p className="text-muted-foreground">
-                  15+ years of consistent excellence and client satisfaction
-                </p>
+                <div className="flex gap-4">
+                  <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-7 h-7 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">Proven Track Record</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      15+ years of consistent excellence serving 500+ satisfied clients
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </div>
+
+            {/* Certifications Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={certificationsDisplay} alt="Our certifications and awards" className="w-full h-80 object-cover" />
+              </div>
+            </motion.div>
           </div>
         </section>
 

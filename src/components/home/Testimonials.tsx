@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import happyClients from "@/assets/happy-clients.jpg";
 
 const testimonials = [
   {
@@ -48,6 +49,19 @@ const Testimonials = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Don't just take our word for it – hear from businesses that trust us with their service needs.
           </p>
+        </motion.div>
+
+        {/* Happy Clients Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto mb-16"
+        >
+          <div className="rounded-2xl overflow-hidden shadow-xl">
+            <img src={happyClients} alt="Happy clients" className="w-full h-80 object-cover" />
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

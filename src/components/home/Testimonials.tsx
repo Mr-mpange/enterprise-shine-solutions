@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, Play } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { VideoModal } from "@/components/ui/video-embed";
 import happyClients from "@/assets/happy-clients.jpg";
 
 const testimonials = [
@@ -10,6 +12,8 @@ const testimonials = [
     role: "Operations Manager",
     content: "Their fire safety services are exceptional. Professional team, thorough inspection, and quick installation. We feel much safer now.",
     rating: 5,
+    hasVideo: true,
+    videoId: "dQw4w9WgXcQ",
   },
   {
     name: "Sarah Hassan",
@@ -17,6 +21,7 @@ const testimonials = [
     role: "CEO",
     content: "Outstanding fumigation service! They handled our office pest problem efficiently and with minimal disruption to our operations.",
     rating: 5,
+    hasVideo: false,
   },
   {
     name: "Michael Ochieng",
@@ -24,10 +29,17 @@ const testimonials = [
     role: "Facilities Director",
     content: "We've been using their cleaning services for 3 years. Consistently reliable, professional, and high-quality work every time.",
     rating: 5,
+    hasVideo: true,
+    videoId: "jNQXAC9IVRw",
   },
 ];
 
 const Testimonials = () => {
+  const [videoModal, setVideoModal] = useState<{ isOpen: boolean; videoId: string }>({
+    isOpen: false,
+    videoId: "",
+  });
+
   return (
     <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -60,7 +72,12 @@ const Testimonials = () => {
           className="max-w-4xl mx-auto mb-16"
         >
           <div className="rounded-2xl overflow-hidden shadow-xl">
-            <img src={happyClients} alt="Happy clients" className="w-full h-80 object-cover" />
+            <img 
+              src={happyClients} 
+              alt="Happy clients" 
+              className="w-full h-80 object-cover"
+              loading="lazy"
+            />
           </div>
         </motion.div>
 
@@ -84,6 +101,20 @@ const Testimonials = () => {
                   <p className="text-foreground mb-6 leading-relaxed">
                     "{testimonial.content}"
                   </p>
+                  
+                  {/* Video Testimonial Button */}
+                  {testimonial.hasVideo && testimonial.videoId && (
+                    <button
+                      onClick={() => setVideoModal({ isOpen: true, videoId: testimonial.videoId! })}
+                      className="flex items-center gap-2 text-primary hover:text-primary/80 mb-4 transition-colors"
+                    >
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Play className="w-4 h-4 fill-primary" />
+                      </div>
+                      <span className="text-sm font-medium">Watch Video Testimonial</span>
+                    </button>
+                  )}
+
                   <div className="border-t border-border pt-4">
                     <div className="font-bold text-foreground">{testimonial.name}</div>
                     <div className="text-sm text-muted-foreground">{testimonial.role}</div>
@@ -95,6 +126,14 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        videoId={videoModal.videoId}
+        platform="youtube"
+        isOpen={videoModal.isOpen}
+        onClose={() => setVideoModal({ isOpen: false, videoId: "" })}
+      />
     </section>
   );
 };

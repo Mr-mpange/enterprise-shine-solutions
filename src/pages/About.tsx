@@ -1,7 +1,11 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import TeamSection from "@/components/home/TeamSection";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Target, Eye, Heart, Users, Award, TrendingUp } from "lucide-react";
+import { ImageLightbox, GalleryImage } from "@/components/ui/image-lightbox";
+import { VideoEmbed } from "@/components/ui/video-embed";
 import teamPhoto from "@/assets/team-photo.jpg";
 import officeInterior from "@/assets/office-interior.jpg";
 import partnership from "@/assets/partnership.jpg";
@@ -9,6 +13,22 @@ import companyBuilding from "@/assets/company-building.jpg";
 import certificationsDisplay from "@/assets/certifications-display.jpg";
 
 const About = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const galleryImages = [
+    { src: companyBuilding, alt: "Company headquarters", title: "Our Modern Headquarters" },
+    { src: officeInterior, alt: "Modern office interior", title: "State-of-the-Art Facilities" },
+    { src: teamPhoto, alt: "Our professional team", title: "Our Professional Team" },
+    { src: partnership, alt: "Professional partnership", title: "Strong Partnerships" },
+    { src: certificationsDisplay, alt: "Our certifications", title: "Industry Certifications" },
+  ];
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -81,7 +101,7 @@ const About = () => {
               </motion.div>
             </div>
 
-            {/* Image Gallery Section */}
+            {/* Image Gallery Section with Lightbox */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -89,21 +109,45 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
             >
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                <img src={companyBuilding} alt="Company headquarters" className="w-full h-64 object-cover" />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                <img src={officeInterior} alt="Modern office interior" className="w-full h-64 object-cover" />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                <img src={teamPhoto} alt="Our professional team" className="w-full h-64 object-cover" />
-              </div>
+              {galleryImages.slice(0, 3).map((image, index) => (
+                <GalleryImage
+                  key={index}
+                  src={image.src}
+                  alt={image.alt}
+                  title={image.title}
+                  className="rounded-2xl h-64 shadow-lg"
+                  onClick={() => openLightbox(index)}
+                />
+              ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Mission, Vision, Values */}
+        {/* Company Video */}
         <section className="py-24 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold mb-4">Discover Our Story</h2>
+              <p className="text-muted-foreground text-lg">Watch our company journey and values</p>
+            </motion.div>
+            <div className="max-w-4xl mx-auto">
+              <VideoEmbed
+                videoId="dQw4w9WgXcQ"
+                platform="youtube"
+                title="About MultiService Professional Solutions"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Mission, Vision, Values */}
+        <section className="py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               <motion.div
@@ -157,8 +201,11 @@ const About = () => {
           </div>
         </section>
 
+        {/* Team Section */}
+        <TeamSection />
+
         {/* Key Strengths with Images */}
-        <section className="py-24 bg-background">
+        <section className="py-24 bg-muted/30">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -180,9 +227,13 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img src={partnership} alt="Professional partnership" className="w-full h-96 object-cover" />
-                </div>
+                <GalleryImage
+                  src={partnership}
+                  alt="Professional partnership"
+                  title="Strong Business Partnerships"
+                  className="rounded-2xl h-96 shadow-xl"
+                  onClick={() => openLightbox(3)}
+                />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -235,15 +286,19 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img src={certificationsDisplay} alt="Our certifications and awards" className="w-full h-80 object-cover" />
-              </div>
+              <GalleryImage
+                src={certificationsDisplay}
+                alt="Our certifications and awards"
+                title="Industry Awards & Certifications"
+                className="rounded-2xl h-80 shadow-xl"
+                onClick={() => openLightbox(4)}
+              />
             </motion.div>
           </div>
         </section>
 
         {/* Company Timeline */}
-        <section className="py-24 bg-muted/30">
+        <section className="py-24 bg-background">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,6 +341,14 @@ const About = () => {
         </section>
       </main>
       <Footer />
+
+      {/* Lightbox */}
+      <ImageLightbox
+        images={galleryImages}
+        initialIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
     </div>
   );
 };

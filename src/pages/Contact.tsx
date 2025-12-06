@@ -1,13 +1,16 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Headphones, Shield, CheckCircle2, ArrowRight, Building2, Globe, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import officeInterior from "@/assets/office-interior.jpg";
+import companyBuilding from "@/assets/company-building.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,14 +18,16 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
+    company: "",
     service: "",
+    budget: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
     if (!formData.name || !formData.email || !formData.service || !formData.message) {
       toast({
         title: "Missing Information",
@@ -32,200 +37,423 @@ const Contact = () => {
       return;
     }
 
-    // Here you would typically send to a backend or email service
+    setIsSubmitting(true);
+    
+    // Simulate submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Message Sent Successfully!",
+      description: "Our team will contact you within 24 hours.",
     });
     
-    // Reset form
     setFormData({
       name: "",
       email: "",
       phone: "",
+      company: "",
       service: "",
+      budget: "",
       message: "",
     });
+    setIsSubmitting(false);
   };
 
   const contactInfo = [
     {
       icon: Phone,
-      title: "Phone",
+      title: "Call Us",
       details: ["+255 123 456 789", "+255 987 654 321"],
+      action: "tel:+255123456789",
+      actionLabel: "Call Now",
+      gradient: "from-primary to-primary/80",
     },
     {
       icon: Mail,
-      title: "Email",
+      title: "Email Us",
       details: ["info@company.co.tz", "support@company.co.tz"],
+      action: "mailto:info@company.co.tz",
+      actionLabel: "Send Email",
+      gradient: "from-secondary to-secondary/80",
     },
     {
       icon: MapPin,
-      title: "Address",
+      title: "Visit Us",
       details: ["123 Business Street", "Dar es Salaam, Tanzania"],
+      action: "#map",
+      actionLabel: "Get Directions",
+      gradient: "from-accent to-accent/80",
     },
     {
       icon: Clock,
-      title: "Business Hours",
+      title: "Working Hours",
       details: ["Mon-Fri: 8:00 AM - 6:00 PM", "Sat: 9:00 AM - 2:00 PM"],
+      action: null,
+      actionLabel: null,
+      gradient: "from-muted-foreground to-muted-foreground/80",
     },
   ];
 
+  const features = [
+    { icon: Headphones, text: "24/7 Customer Support" },
+    { icon: Shield, text: "100% Satisfaction Guarantee" },
+    { icon: CheckCircle2, text: "Free Initial Consultation" },
+    { icon: Users, text: "Dedicated Account Manager" },
+  ];
+
+  const faqs = [
+    {
+      q: "How quickly can you respond to service requests?",
+      a: "We typically respond within 24 hours for standard requests and within 2 hours for emergency situations. Our dedicated team ensures prompt communication and swift action.",
+    },
+    {
+      q: "Do you provide free consultations?",
+      a: "Yes, we offer free initial consultations for all our services to assess your needs and provide accurate quotes. Our experts will visit your site at no cost.",
+    },
+    {
+      q: "Are your services available nationwide?",
+      a: "We primarily serve Dar es Salaam and surrounding regions, but we can arrange services in other major cities upon request.",
+    },
+    {
+      q: "What certifications do you hold?",
+      a: "We are ISO 9001:2015 certified, OSHA compliant, and hold all necessary regulatory licenses for our services including fire safety, pest control, and environmental management.",
+    },
+    {
+      q: "Can you handle large commercial projects?",
+      a: "Absolutely! We have extensive experience with commercial and industrial clients, including hotels, factories, office buildings, and government institutions.",
+    },
+    {
+      q: "What payment methods do you accept?",
+      a: "We accept bank transfers, mobile money (M-Pesa, Tigo Pesa), cash, and corporate invoicing for established clients. Flexible payment terms are available.",
+    },
+  ];
+
+  const stats = [
+    { icon: Building2, value: "500+", label: "Corporate Clients" },
+    { icon: Globe, value: "15+", label: "Regions Served" },
+    { icon: Users, value: "50+", label: "Team Members" },
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <main>
-        {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary via-primary to-primary/90 text-white">
-          <div className="container mx-auto px-4">
+        {/* Hero Section with Background Image */}
+        <section className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src={companyBuilding} 
+              alt="Contact Us" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70" />
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-3xl"
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact Us</h1>
-              <p className="text-xl text-white/90 leading-relaxed">
-                Get in touch with our team for a free consultation and quote. We're here to help your business succeed.
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium mb-6">
+                <MessageCircle className="w-4 h-4" />
+                We're Here to Help
+              </span>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                Let's Start a <span className="text-secondary">Conversation</span>
+              </h1>
+              <p className="text-xl text-white/90 leading-relaxed max-w-2xl mb-8">
+                Get in touch with our expert team for personalized solutions. We respond within 24 hours and offer free consultations.
               </p>
+              
+              {/* Quick Stats */}
+              <div className="flex flex-wrap gap-8 pt-4">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                      <stat.icon className="w-6 h-6 text-secondary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-white">{stat.value}</div>
+                      <div className="text-sm text-white/70">{stat.label}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Contact Info Cards */}
-        <section className="py-16 bg-background">
+        {/* Contact Info Cards - Floating */}
+        <section className="py-8 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto -mt-32 relative z-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto -mt-20 relative z-10">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="corporate-card p-6 text-center bg-background"
+                  className="group relative bg-card rounded-2xl p-6 shadow-xl border border-border/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="w-7 h-7 text-primary" />
+                  <div className={`absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r ${info.gradient}`} />
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${info.gradient} flex items-center justify-center mb-4 shadow-lg`}>
+                    <info.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="font-bold mb-3">{info.title}</h3>
+                  <h3 className="font-bold text-lg mb-3 text-foreground">{info.title}</h3>
                   {info.details.map((detail, i) => (
-                    <p key={i} className="text-sm text-muted-foreground">
+                    <p key={i} className="text-sm text-muted-foreground leading-relaxed">
                       {detail}
                     </p>
                   ))}
+                  {info.action && (
+                    <a 
+                      href={info.action}
+                      className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-primary hover:text-primary/80 transition-colors group-hover:gap-3"
+                    >
+                      {info.actionLabel}
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Contact Form & Map */}
+        {/* Main Contact Section */}
         <section className="py-24 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {/* Contact Form */}
+            <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
+              {/* Contact Form - Takes 3 columns */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
+                className="lg:col-span-3"
               >
-                <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
-                <p className="text-muted-foreground mb-8">
-                  Fill out the form below and we'll respond within 24 hours.
-                </p>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Full Name *</label>
-                    <Input
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="John Doe"
-                      required
-                    />
+                <div className="bg-card rounded-3xl shadow-xl border border-border/50 overflow-hidden">
+                  {/* Form Header */}
+                  <div className="bg-gradient-to-r from-primary to-primary/90 p-8 text-white">
+                    <h2 className="text-3xl font-bold mb-2">Request a Free Quote</h2>
+                    <p className="text-white/80">
+                      Fill out the form and our team will get back to you within 24 hours.
+                    </p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Email Address *</label>
-                    <Input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="john@example.com"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Phone Number</label>
-                    <Input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+255 123 456 789"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Service Needed *</label>
-                    <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="fire">Fire Services & Safety</SelectItem>
-                        <SelectItem value="fumigation">Fumigation & Pest Control</SelectItem>
-                        <SelectItem value="cleaning">General Cleanliness</SelectItem>
-                        <SelectItem value="tailoring">Ushanaji (Tailoring)</SelectItem>
-                        <SelectItem value="multiple">Multiple Services</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Message *</label>
-                    <Textarea
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your requirements..."
-                      rows={5}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold">
-                    Send Message
-                  </Button>
-                </form>
+                  
+                  {/* Form Body */}
+                  <form onSubmit={handleSubmit} className="p-8 space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Full Name *</label>
+                        <Input
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="John Doe"
+                          className="h-12 rounded-xl border-border/50 focus:border-primary"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Email Address *</label>
+                        <Input
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="john@company.com"
+                          className="h-12 rounded-xl border-border/50 focus:border-primary"
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Phone Number</label>
+                        <Input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="+255 123 456 789"
+                          className="h-12 rounded-xl border-border/50 focus:border-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Company Name</label>
+                        <Input
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Your Company Ltd"
+                          className="h-12 rounded-xl border-border/50 focus:border-primary"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Service Needed *</label>
+                        <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
+                          <SelectTrigger className="h-12 rounded-xl border-border/50">
+                            <SelectValue placeholder="Select a service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="fire">🔥 Fire Services & Safety</SelectItem>
+                            <SelectItem value="fumigation">🐜 Fumigation & Pest Control</SelectItem>
+                            <SelectItem value="cleaning">🧹 General Cleanliness</SelectItem>
+                            <SelectItem value="tailoring">👔 Ushanaji (Tailoring)</SelectItem>
+                            <SelectItem value="multiple">📦 Multiple Services</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-foreground">Estimated Budget</label>
+                        <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
+                          <SelectTrigger className="h-12 rounded-xl border-border/50">
+                            <SelectValue placeholder="Select budget range" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="small">Under TZS 500,000</SelectItem>
+                            <SelectItem value="medium">TZS 500,000 - 2,000,000</SelectItem>
+                            <SelectItem value="large">TZS 2,000,000 - 10,000,000</SelectItem>
+                            <SelectItem value="enterprise">Above TZS 10,000,000</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold mb-2 text-foreground">Project Details *</label>
+                      <Textarea
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Tell us about your requirements, timeline, and any specific needs..."
+                        rows={5}
+                        className="rounded-xl border-border/50 focus:border-primary resize-none"
+                        required
+                      />
+                    </div>
+                    
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full h-14 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                          />
+                          Sending...
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <Send className="w-5 h-5" />
+                          Submit Request
+                        </span>
+                      )}
+                    </Button>
+                    
+                    {/* Features */}
+                    <div className="grid grid-cols-2 gap-4 pt-4">
+                      {features.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <feature.icon className="w-4 h-4 text-accent" />
+                          {feature.text}
+                        </div>
+                      ))}
+                    </div>
+                  </form>
+                </div>
               </motion.div>
 
-              {/* Map & Additional Info */}
+              {/* Right Side - Map & Info - Takes 2 columns */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="space-y-8"
+                className="lg:col-span-2 space-y-6"
               >
-                <div>
-                  <h2 className="text-3xl font-bold mb-6">Visit Our Office</h2>
-                  <div className="corporate-card overflow-hidden h-96">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.4347582478495!2d39.27358431477288!3d-6.828370295068492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4b5f42b9c1c5%3A0x7e0a6f0b5f5e5f5e!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2stz!4v1234567890123"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
+                {/* Office Image */}
+                <div className="relative rounded-3xl overflow-hidden shadow-xl group">
+                  <img 
+                    src={officeInterior} 
+                    alt="Our Office" 
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">Visit Our Headquarters</h3>
+                      <p className="text-white/80 text-sm">Experience our state-of-the-art facilities</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Map */}
+                <div id="map" className="rounded-3xl overflow-hidden shadow-xl border border-border/50">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.4347582478495!2d39.27358431477288!3d-6.828370295068492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4b5f42b9c1c5%3A0x7e0a6f0b5f5e5f5e!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2stz!4v1234567890123"
+                    width="100%"
+                    height="250"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Office Location"
+                  />
+                </div>
+
+                {/* Emergency Card */}
+                <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-3xl p-6 text-white shadow-xl">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">24/7 Emergency Line</h3>
+                      <p className="text-white/80 text-sm mb-4">
+                        For urgent fire safety or pest emergencies, our team is available around the clock.
+                      </p>
+                      <a 
+                        href="tel:+255123456789" 
+                        className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors"
+                      >
+                        <Phone className="w-5 h-5" />
+                        +255 123 456 789
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                <div className="corporate-card p-8">
-                  <h3 className="text-xl font-bold mb-4">Emergency Services</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Need urgent assistance? Our emergency response team is available 24/7 for critical situations.
-                  </p>
-                  <a href="tel:+255123456789" className="text-secondary font-bold text-2xl hover:underline">
-                    +255 123 456 789
-                  </a>
-                </div>
+                {/* WhatsApp Card */}
+                <a
+                  href="https://wa.me/255123456789?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20services"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 text-white shadow-xl hover:shadow-2xl transition-all group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <MessageCircle className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-1">Chat on WhatsApp</h3>
+                      <p className="text-white/80 text-sm">Get instant responses from our team</p>
+                    </div>
+                    <ArrowRight className="w-6 h-6 ml-auto group-hover:translate-x-2 transition-transform" />
+                  </div>
+                </a>
               </motion.div>
             </div>
           </div>
@@ -241,42 +469,55 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-              <p className="text-muted-foreground text-lg">Quick answers to common questions</p>
+              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+                Got Questions?
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Frequently Asked Questions</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Find quick answers to common questions about our services, processes, and policies.
+              </p>
             </motion.div>
 
-            <div className="max-w-3xl mx-auto space-y-6">
-              {[
-                {
-                  q: "How quickly can you respond to service requests?",
-                  a: "We typically respond within 24 hours for standard requests and within 2 hours for emergency situations.",
-                },
-                {
-                  q: "Do you provide free consultations?",
-                  a: "Yes, we offer free initial consultations for all our services to assess your needs and provide accurate quotes.",
-                },
-                {
-                  q: "Are your services available nationwide?",
-                  a: "We primarily serve Dar es Salaam and surrounding regions, but we can arrange services in other major cities.",
-                },
-                {
-                  q: "What certifications do you hold?",
-                  a: "We are ISO 9001:2015 certified, OSHA compliant, and hold all necessary regulatory licenses for our services.",
-                },
-              ].map((faq, index) => (
-                <motion.div
-                  key={faq.q}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="corporate-card p-6"
-                >
-                  <h3 className="font-bold text-lg mb-3">{faq.q}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{faq.a}</p>
-                </motion.div>
-              ))}
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    <AccordionItem 
+                      value={`item-${index}`}
+                      className="bg-card rounded-2xl border border-border/50 px-6 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
+                ))}
+              </Accordion>
             </div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center mt-12"
+            >
+              <p className="text-muted-foreground mb-4">Still have questions?</p>
+              <Button variant="outline" size="lg" className="rounded-full px-8">
+                <Mail className="w-4 h-4 mr-2" />
+                Email Our Support Team
+              </Button>
+            </motion.div>
           </div>
         </section>
       </main>

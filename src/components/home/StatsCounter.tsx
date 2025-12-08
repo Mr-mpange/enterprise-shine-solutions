@@ -87,7 +87,7 @@ const StatsCounter = () => {
   );
 };
 
-const CountUp = ({ target, suffix }: { target: number; suffix: string }) => {
+export const CountUp = ({ target, suffix }: { target: number; suffix: string }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

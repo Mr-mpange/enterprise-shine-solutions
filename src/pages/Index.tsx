@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import Testimonials from "@/components/home/Testimonials";
 import VideoTestimonials from "@/components/home/VideoTestimonials";
 import Certifications from "@/components/home/Certifications";
+import ClientLogos from "@/components/home/ClientLogos";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroCarousel />
+        <ClientLogos />
         <ServicesOverview />
         <StatsCounter />
         <WhyChooseUs />

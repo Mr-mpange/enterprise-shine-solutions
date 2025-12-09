@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -91,8 +92,9 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
+            {/* Right Side Actions */}
+            <div className="hidden lg:flex items-center gap-3">
+              <ThemeToggle />
               <Link to="/contact">
                 <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium shadow-lg">
                   Request Service
@@ -100,13 +102,16 @@ const Navigation = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Actions */}
+            <div className="flex lg:hidden items-center gap-2">
+              <ThemeToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-foreground hover:text-primary transition-colors"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 

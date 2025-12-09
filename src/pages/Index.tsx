@@ -8,6 +8,9 @@ import Testimonials from "@/components/home/Testimonials";
 import VideoTestimonials from "@/components/home/VideoTestimonials";
 import Certifications from "@/components/home/Certifications";
 import ClientLogos from "@/components/home/ClientLogos";
+import ServicesComparison from "@/components/home/ServicesComparison";
+import Newsletter from "@/components/home/Newsletter";
+import FloatingContact from "@/components/ui/FloatingContact";
 
 const Index = () => {
   return (
@@ -17,13 +20,16 @@ const Index = () => {
         <HeroCarousel />
         <ClientLogos />
         <ServicesOverview />
+        <ServicesComparison />
         <StatsCounter />
         <WhyChooseUs />
         <VideoTestimonials />
         <Testimonials />
+        <Newsletter />
         <Certifications />
       </main>
       <Footer />
+      <FloatingContact />
     </div>
   );
 };

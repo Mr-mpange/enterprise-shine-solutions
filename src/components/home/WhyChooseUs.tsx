@@ -36,29 +36,29 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <div className="inline-block mb-4">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-4 py-2 rounded-full">
+          <div className="inline-block mb-3">
+            <span className="text-primary font-semibold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full">
               Why Choose Us
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Your Trusted Service Partner
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
             We combine expertise, reliability, and dedication to deliver exceptional results for every project.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -66,16 +66,16 @@ const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex gap-4 p-6 rounded-xl hover:bg-muted/50 transition-colors group"
+              className="flex gap-3 p-4 rounded-lg hover:bg-muted/50 transition-colors group"
             >
               <div className="flex-shrink-0">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
-                  <feature.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+                <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
+                  <feature.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-sm font-bold mb-1">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-xs">
                   {feature.description}
                 </p>
               </div>

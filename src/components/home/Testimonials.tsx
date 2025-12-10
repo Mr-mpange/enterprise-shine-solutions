@@ -86,7 +86,7 @@ const Testimonials = () => {
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+    <section className="py-16 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -94,22 +94,22 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.div 
-            className="inline-flex items-center gap-2 mb-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 px-5 py-2.5 rounded-full border border-primary/20"
+            className="inline-flex items-center gap-1.5 mb-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 px-3 py-1.5 rounded-full border border-primary/20"
             animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             transition={{ duration: 5, repeat: Infinity }}
           >
-            <Sparkles className="w-4 h-4 text-secondary" />
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+            <Sparkles className="w-3 h-3 text-secondary" />
+            <span className="text-primary font-semibold text-xs uppercase tracking-wider">
               Client Testimonials
             </span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
             What Our Clients Say
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
             Don't just take our word for it – hear from businesses that trust us with their service needs.
           </p>
         </motion.div>
@@ -137,8 +137,8 @@ const Testimonials = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-secondary/10 to-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-              <div className="relative p-8 md:p-12 lg:p-16">
-                <div className="grid lg:grid-cols-[1fr,auto] gap-12 items-center">
+              <div className="relative p-6 md:p-8 lg:p-10">
+                <div className="grid lg:grid-cols-[1fr,auto] gap-8 items-center">
                   {/* Testimonial Content */}
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -149,10 +149,10 @@ const Testimonials = () => {
                       transition={{ duration: 0.4 }}
                     >
                       {/* Quote Icon */}
-                      <Quote className="w-16 h-16 text-primary/20 mb-6" />
+                      <Quote className="w-10 h-10 text-primary/20 mb-4" />
 
                       {/* Rating */}
-                      <div className="flex gap-1.5 mb-6">
+                      <div className="flex gap-1 mb-4">
                         {[...Array(activeTestimonial.rating)].map((_, i) => (
                           <motion.div
                             key={i}
@@ -160,13 +160,13 @@ const Testimonials = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.1 }}
                           >
-                            <Star className="w-6 h-6 fill-secondary text-secondary drop-shadow-lg" />
+                            <Star className="w-4 h-4 fill-secondary text-secondary drop-shadow-lg" />
                           </motion.div>
                         ))}
                       </div>
 
                       {/* Quote Text */}
-                      <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-8 text-foreground">
+                      <blockquote className="text-base md:text-lg font-medium leading-relaxed mb-5 text-foreground">
                         "{activeTestimonial.content}"
                       </blockquote>
 
@@ -174,26 +174,26 @@ const Testimonials = () => {
                       {activeTestimonial.hasVideo && activeTestimonial.videoId && (
                         <motion.button
                           onClick={() => setVideoModal({ isOpen: true, videoId: activeTestimonial.videoId! })}
-                          className="flex items-center gap-3 text-primary hover:text-primary/80 mb-8 group transition-all"
+                          className="flex items-center gap-2 text-primary hover:text-primary/80 mb-5 group transition-all"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
-                            <Play className="w-5 h-5 fill-white text-white ml-0.5" />
+                          <div className="w-9 h-9 bg-primary rounded-full flex items-center justify-center shadow-md shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
+                            <Play className="w-4 h-4 fill-white text-white ml-0.5" />
                           </div>
-                          <span className="font-semibold">Watch Video Testimonial</span>
+                          <span className="font-semibold text-sm">Watch Video Testimonial</span>
                         </motion.button>
                       )}
 
                       {/* Author Info */}
-                      <div className="flex items-center gap-4">
-                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${activeTestimonial.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${activeTestimonial.gradient} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
                           {activeTestimonial.avatar}
                         </div>
                         <div>
-                          <div className="font-bold text-lg text-foreground">{activeTestimonial.name}</div>
-                          <div className="text-muted-foreground">{activeTestimonial.role}</div>
-                          <div className="text-primary font-medium">{activeTestimonial.company}</div>
+                          <div className="font-bold text-sm text-foreground">{activeTestimonial.name}</div>
+                          <div className="text-muted-foreground text-xs">{activeTestimonial.role}</div>
+                          <div className="text-primary font-medium text-xs">{activeTestimonial.company}</div>
                         </div>
                       </div>
                     </motion.div>
@@ -283,7 +283,7 @@ const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {[
               { label: "Happy Clients", value: "500+" },
@@ -297,10 +297,10 @@ const Testimonials = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center p-4 rounded-2xl bg-muted/50 backdrop-blur-sm border border-border/50"
+                className="text-center p-3 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50"
               >
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-xl md:text-2xl font-bold text-primary mb-0.5">{stat.value}</div>
+                <div className="text-xs text-muted-foreground">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

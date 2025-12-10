@@ -6,7 +6,7 @@ import heroBanner from "@/assets/hero-banner.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -24,39 +24,39 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-6 h-6 text-secondary" />
-              <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+            <div className="flex items-center gap-2 mb-3">
+              <Shield className="w-5 h-5 text-secondary" />
+              <span className="text-secondary font-semibold text-xs uppercase tracking-wider">
                 Trusted by 500+ Businesses
               </span>
             </div>
 
-            <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Complete Corporate Solutions for Your Business
             </h1>
 
-            <p className="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl">
+            <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-2xl">
               From fire safety to fumigation, cleaning to custom uniforms – we deliver professional services that keep your business running smoothly and safely.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-3">
               <Link to="/contact">
                 <Button
-                  size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-6 text-base shadow-xl hover:scale-105 transition-transform"
+                  size="default"
+                  className="bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-5 text-sm shadow-xl hover:scale-105 transition-transform"
                 >
                   Request Service
-                  <ChevronRight className="ml-2 w-5 h-5" />
+                  <ChevronRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <Link to="/services">
                 <Button
-                  size="lg"
+                  size="default"
                   variant="outline"
-                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-6 text-base"
+                  className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-5 text-sm"
                 >
                   Our Services
                 </Button>
@@ -64,23 +64,23 @@ const Hero = () => {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-8 pt-8">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-secondary" />
+            <div className="flex flex-wrap gap-6 pt-6">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <div className="text-white font-bold text-2xl">15+</div>
-                  <div className="text-white/80 text-sm">Years Experience</div>
+                  <div className="text-white font-bold text-xl">15+</div>
+                  <div className="text-white/80 text-xs">Years Experience</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-accent" />
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <div className="text-white font-bold text-2xl">100%</div>
-                  <div className="text-white/80 text-sm">Certified & Licensed</div>
+                  <div className="text-white font-bold text-xl">100%</div>
+                  <div className="text-white/80 text-xs">Certified & Licensed</div>
                 </div>
               </div>
             </div>

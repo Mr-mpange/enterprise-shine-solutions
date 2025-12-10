@@ -85,19 +85,19 @@ const tierLabels = ["Basic", "Standard", "Premium"];
 
 const ServicesComparison = () => {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-14 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+          <span className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
             Pricing Plans
           </span>
-          <h2 className="text-foreground mb-4">Service Packages</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <h2 className="text-foreground mb-3 text-xl md:text-2xl">Service Packages</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
             Choose the perfect plan for your business needs
           </p>
         </motion.div>
@@ -106,7 +106,7 @@ const ServicesComparison = () => {
           <Table className="min-w-[800px]">
             <TableHeader>
               <TableRow className="bg-card hover:bg-card">
-                <TableHead className="w-[200px] font-bold text-foreground">Service</TableHead>
+                <TableHead className="w-[180px] font-bold text-foreground text-sm">Service</TableHead>
                 {tierLabels.map((tier, index) => (
                   <TableHead
                     key={tier}
@@ -114,10 +114,10 @@ const ServicesComparison = () => {
                       index === 2 ? "bg-secondary/10 text-secondary" : "text-foreground"
                     }`}
                   >
-                    <div className="flex flex-col items-center gap-1">
-                      <span className="text-lg">{tier}</span>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span className="text-sm">{tier}</span>
                       {index === 2 && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-secondary text-secondary-foreground">
                           Most Popular
                         </span>
                       )}
@@ -137,11 +137,11 @@ const ServicesComparison = () => {
                   className="border-b border-border hover:bg-muted/50 transition-colors"
                 >
                   <TableCell className="font-medium">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg bg-muted ${service.color}`}>
-                        <service.icon className="w-5 h-5" />
+                    <div className="flex items-center gap-2">
+                      <div className={`p-1.5 rounded-md bg-muted ${service.color}`}>
+                        <service.icon className="w-4 h-4" />
                       </div>
-                      <span className="text-foreground font-semibold">{service.name}</span>
+                      <span className="text-foreground font-semibold text-sm">{service.name}</span>
                     </div>
                   </TableCell>
                   {(["basic", "standard", "premium"] as const).map((tier, tierIndex) => (
@@ -149,14 +149,14 @@ const ServicesComparison = () => {
                       key={tier}
                       className={`text-center ${tierIndex === 2 ? "bg-secondary/5" : ""}`}
                     >
-                      <div className="space-y-3">
-                        <div className="text-xl font-bold text-foreground">
+                      <div className="space-y-2">
+                        <div className="text-base font-bold text-foreground">
                           {service.tiers[tier].price}
                         </div>
-                        <ul className="space-y-2 text-sm text-left">
+                        <ul className="space-y-1.5 text-xs text-left">
                           {service.tiers[tier].features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2 text-muted-foreground">
-                              <Check className="w-4 h-4 text-accent shrink-0" />
+                            <li key={i} className="flex items-center gap-1.5 text-muted-foreground">
+                              <Check className="w-3 h-3 text-accent shrink-0" />
                               <span>{feature}</span>
                             </li>
                           ))}

@@ -42,7 +42,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 relative overflow-hidden">
+    <section className="py-14 bg-gradient-to-br from-primary/5 via-background to-secondary/5 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -51,7 +51,7 @@ const Newsletter = () => {
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 8, repeat: Infinity }}
-          className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-primary/10 blur-3xl"
+          className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-primary/10 blur-3xl"
         />
         <motion.div
           animate={{
@@ -59,7 +59,7 @@ const Newsletter = () => {
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-          className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"
+          className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-secondary/10 blur-3xl"
         />
       </div>
 
@@ -68,21 +68,21 @@ const Newsletter = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto text-center"
+          className="max-w-xl mx-auto text-center"
         >
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary mb-6"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/10 text-secondary mb-4"
           >
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-semibold">Stay Updated</span>
+            <Sparkles className="w-3 h-3" />
+            <span className="text-xs font-semibold">Stay Updated</span>
           </motion.div>
 
-          <h2 className="text-foreground mb-4">Subscribe to Our Newsletter</h2>
-          <p className="text-muted-foreground text-lg mb-8">
+          <h2 className="text-foreground mb-3 text-xl md:text-2xl">Subscribe to Our Newsletter</h2>
+          <p className="text-muted-foreground text-sm mb-6">
             Get the latest news, updates, and exclusive offers delivered straight to your inbox.
           </p>
 
@@ -127,34 +127,34 @@ const Newsletter = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+                className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
               >
                 <div className="relative flex-1">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-12 h-14 bg-card border-border text-foreground placeholder:text-muted-foreground rounded-xl text-base"
+                    className="pl-10 h-11 bg-card border-border text-foreground placeholder:text-muted-foreground rounded-lg text-sm"
                     disabled={isSubmitting}
                   />
                 </div>
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="h-14 px-8 rounded-xl bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold text-base"
+                  className="h-11 px-6 rounded-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold text-sm"
                 >
                   {isSubmitting ? (
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-secondary-foreground border-t-transparent rounded-full"
+                      className="w-4 h-4 border-2 border-secondary-foreground border-t-transparent rounded-full"
                     />
                   ) : (
                     <>
                       Subscribe
-                      <Send className="ml-2 w-4 h-4" />
+                      <Send className="ml-1.5 w-3.5 h-3.5" />
                     </>
                   )}
                 </Button>

@@ -26,24 +26,24 @@ const certifications = [
 
 const Certifications = () => {
   return (
-    <section className="py-20 bg-background border-y border-border">
+    <section className="py-12 bg-background border-y border-border">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-3">
+          <h3 className="text-lg md:text-xl font-bold mb-2">
             Certified & Accredited
           </h3>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Trusted by regulatory bodies and industry leaders
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.title}
@@ -53,11 +53,11 @@ const Certifications = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center group"
             >
-              <div className="w-20 h-20 mx-auto mb-4 bg-primary/5 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
-                <cert.icon className="w-10 h-10 text-primary group-hover:text-white transition-colors" />
+              <div className="w-14 h-14 mx-auto mb-3 bg-primary/5 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
+                <cert.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
               </div>
-              <h4 className="font-bold text-foreground mb-1">{cert.title}</h4>
-              <p className="text-sm text-muted-foreground">{cert.description}</p>
+              <h4 className="font-bold text-foreground mb-0.5 text-sm">{cert.title}</h4>
+              <p className="text-xs text-muted-foreground">{cert.description}</p>
             </motion.div>
           ))}
         </div>

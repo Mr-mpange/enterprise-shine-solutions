@@ -129,25 +129,31 @@ const HeroCarousel = () => {
   const slide = slides[currentSlide];
   const Icon = slide.icon;
 
-  // Modern image transition variants
+  // Throw away image transition variants
   const imageVariants = {
     enter: (direction: number) => ({
-      scale: 1.2,
+      x: direction > 0 ? "100%" : "-100%",
+      scale: 0.8,
       opacity: 0,
-      rotateY: direction > 0 ? 5 : -5,
-      filter: "blur(10px)",
+      rotateZ: direction > 0 ? 15 : -15,
+      rotateY: direction > 0 ? 25 : -25,
+      filter: "blur(8px) brightness(0.5)",
     }),
     center: {
+      x: 0,
       scale: 1,
       opacity: 1,
+      rotateZ: 0,
       rotateY: 0,
-      filter: "blur(0px)",
+      filter: "blur(0px) brightness(1)",
     },
     exit: (direction: number) => ({
-      scale: 0.95,
+      x: direction > 0 ? "-120%" : "120%",
+      scale: 0.6,
       opacity: 0,
-      rotateY: direction < 0 ? 5 : -5,
-      filter: "blur(10px)",
+      rotateZ: direction > 0 ? -25 : 25,
+      rotateY: direction > 0 ? -35 : 35,
+      filter: "blur(12px) brightness(0.3)",
     }),
   };
 
@@ -174,7 +180,7 @@ const HeroCarousel = () => {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden perspective-1000">
+    <section className="relative min-h-[95vh] flex items-center overflow-hidden" style={{ perspective: "1500px" }}>
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 z-[1] opacity-30 pointer-events-none">
         <motion.div
@@ -190,8 +196,8 @@ const HeroCarousel = () => {
         />
       </div>
 
-      {/* Background Images with Ken Burns & 3D effect */}
-      <AnimatePresence initial={false} custom={direction} mode="wait">
+      {/* Background Images with Throw Away 3D effect */}
+      <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.div
           key={currentSlide}
           custom={direction}
@@ -200,16 +206,21 @@ const HeroCarousel = () => {
           animate="center"
           exit="exit"
           transition={{
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            type: "spring",
+            stiffness: 80,
+            damping: 20,
+            mass: 1,
           }}
-          className="absolute inset-0"
-          style={{ transformStyle: "preserve-3d" }}
+          className="absolute inset-0 origin-center"
+          style={{ 
+            transformStyle: "preserve-3d",
+            perspective: "1200px",
+          }}
         >
           <motion.img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-lg shadow-2xl"
             animate={{ scale: imageScale }}
             transition={{ duration: 8, ease: "linear" }}
           />

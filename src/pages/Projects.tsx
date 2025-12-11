@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ImageLightbox, GalleryImage } from "@/components/ui/image-lightbox";
 import { LazyImage } from "@/components/ui/lazy-image";
+import PageTransition from "@/components/ui/PageTransition";
 import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
@@ -131,9 +132,10 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <main>
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
+        <main>
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary via-primary to-primary/90 text-white">
           <div className="container mx-auto px-4">
@@ -297,16 +299,17 @@ const Projects = () => {
           </div>
         </section>
       </main>
-      <Footer />
+        <Footer />
 
-      {/* Lightbox */}
-      <ImageLightbox
-        images={lightboxImages}
-        initialIndex={lightboxIndex}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-      />
-    </div>
+        {/* Lightbox */}
+        <ImageLightbox
+          images={lightboxImages}
+          initialIndex={lightboxIndex}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+        />
+      </div>
+    </PageTransition>
   );
 };
 

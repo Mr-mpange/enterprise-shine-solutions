@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Flame, Bug, Sparkles, Shirt, CheckCircle, ArrowRight } from "lucide-react";
+import PageTransition from "@/components/ui/PageTransition";
 import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
@@ -94,8 +95,9 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
       <main>
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary via-primary to-primary/90 text-white">
@@ -216,8 +218,9 @@ const Services = () => {
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 

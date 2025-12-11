@@ -17,8 +17,8 @@ const clients = [
 
 const ClientLogos = () => {
   return (
-    <section className="py-16 bg-muted/30 overflow-hidden">
-      <div className="container mx-auto px-4 mb-10">
+    <section className="py-12 bg-muted/30 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,10 +26,10 @@ const ClientLogos = () => {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <p className="text-sm font-semibold text-secondary uppercase tracking-wider mb-2">
+          <p className="text-xs font-semibold text-secondary uppercase tracking-wider mb-2">
             Trusted By Industry Leaders
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground">
             Our Valued <span className="text-primary">Partners</span>
           </h2>
         </motion.div>
@@ -77,7 +77,7 @@ const ClientLogos = () => {
           <motion.div
             className="flex gap-6"
             initial={{ x: -50 * clients.length * 2.5 }}
-            animate={{ x: [- 50 * clients.length * 2.5, 0] }}
+            animate={{ x: [-50 * clients.length * 2.5, 0] }}
             transition={{
               x: {
                 duration: 35,
@@ -111,24 +111,24 @@ const ClientLogos = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="container mx-auto px-4 mt-12"
+        className="container mx-auto px-4 mt-10"
       >
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-12">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary">150+</div>
-            <div className="text-sm text-muted-foreground">Corporate Clients</div>
+            <div className="text-2xl font-bold text-primary">150+</div>
+            <div className="text-xs text-muted-foreground">Corporate Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-secondary">12+</div>
-            <div className="text-sm text-muted-foreground">Industry Sectors</div>
+            <div className="text-2xl font-bold text-secondary">12+</div>
+            <div className="text-xs text-muted-foreground">Industry Sectors</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">98%</div>
-            <div className="text-sm text-muted-foreground">Client Retention</div>
+            <div className="text-2xl font-bold text-accent">98%</div>
+            <div className="text-xs text-muted-foreground">Client Retention</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary">25+</div>
-            <div className="text-sm text-muted-foreground">Years Partnership</div>
+            <div className="text-2xl font-bold text-primary">25+</div>
+            <div className="text-xs text-muted-foreground">Years Partnership</div>
           </div>
         </div>
       </motion.div>

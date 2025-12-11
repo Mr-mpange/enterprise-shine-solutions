@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Shield, Flame, Bug, Sparkles, Scissors } from "lucide-react";
@@ -101,6 +101,13 @@ const HeroCarousel = () => {
   const [direction, setDirection] = useState(1);
   const [showDescription, setShowDescription] = useState(false);
   const [imageScale, setImageScale] = useState(1);
+  
+  // Parallax scroll effect
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 800], [0, 300]);
+  const contentY = useTransform(scrollY, [0, 500], [0, 100]);
+  const overlayOpacity = useTransform(scrollY, [0, 400], [0.8, 1]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.15]);
 
   const goToNext = useCallback(() => {
     setDirection(1);
@@ -199,8 +206,15 @@ const HeroCarousel = () => {
         />
       </div>
 
-      {/* Background Images with 3D Cube Rotation effect */}
-      <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
+      {/* Background Images with 3D Cube Rotation + Parallax effect */}
+      <motion.div 
+        className="absolute inset-0" 
+        style={{ 
+          transformStyle: "preserve-3d",
+          y: backgroundY,
+          scale: scale,
+        }}
+      >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={currentSlide}
@@ -230,12 +244,15 @@ const HeroCarousel = () => {
               transition={{ duration: 8, ease: "linear" }}
             />
             {/* Modern gradient overlay with multiple layers */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" 
+              style={{ opacity: overlayOpacity }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-primary/40" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--primary)/0.3)_100%)]" />
           </motion.div>
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
@@ -262,8 +279,8 @@ const HeroCarousel = () => {
         ))}
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
+      {/* Content with parallax */}
+      <motion.div className="container mx-auto px-4 relative z-10" style={{ y: contentY }}>
         <div className="max-w-4xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -367,7 +384,7 @@ const HeroCarousel = () => {
             </motion.div>
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       {/* Modern Navigation Arrows */}
       <motion.button

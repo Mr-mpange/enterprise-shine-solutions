@@ -129,31 +129,34 @@ const HeroCarousel = () => {
   const slide = slides[currentSlide];
   const Icon = slide.icon;
 
-  // Throw away image transition variants
+  // 3D Cube rotation effect - slides rotate like faces of a cube
   const imageVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
+      rotateY: direction > 0 ? 90 : -90,
+      rotateX: direction > 0 ? -15 : 15,
+      x: direction > 0 ? "50%" : "-50%",
+      z: -500,
       scale: 0.8,
       opacity: 0,
-      rotateZ: direction > 0 ? 15 : -15,
-      rotateY: direction > 0 ? 25 : -25,
-      filter: "blur(8px) brightness(0.5)",
+      filter: "brightness(0.3)",
     }),
     center: {
+      rotateY: 0,
+      rotateX: 0,
       x: 0,
+      z: 0,
       scale: 1,
       opacity: 1,
-      rotateZ: 0,
-      rotateY: 0,
-      filter: "blur(0px) brightness(1)",
+      filter: "brightness(1)",
     },
     exit: (direction: number) => ({
-      x: direction > 0 ? "-120%" : "120%",
-      scale: 0.6,
+      rotateY: direction > 0 ? -90 : 90,
+      rotateX: direction > 0 ? 15 : -15,
+      x: direction > 0 ? "-50%" : "50%",
+      z: -500,
+      scale: 0.8,
       opacity: 0,
-      rotateZ: direction > 0 ? -25 : 25,
-      rotateY: direction > 0 ? -35 : 35,
-      filter: "blur(12px) brightness(0.3)",
+      filter: "brightness(0.3)",
     }),
   };
 
@@ -180,7 +183,7 @@ const HeroCarousel = () => {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden" style={{ perspective: "1500px" }}>
+    <section className="relative min-h-[95vh] flex items-center overflow-hidden" style={{ perspective: "2000px", perspectiveOrigin: "center center" }}>
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 z-[1] opacity-30 pointer-events-none">
         <motion.div
@@ -196,40 +199,43 @@ const HeroCarousel = () => {
         />
       </div>
 
-      {/* Background Images with Throw Away 3D effect */}
-      <AnimatePresence initial={false} custom={direction} mode="popLayout">
-        <motion.div
-          key={currentSlide}
-          custom={direction}
-          variants={imageVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            type: "spring",
-            stiffness: 80,
-            damping: 20,
-            mass: 1,
-          }}
-          className="absolute inset-0 origin-center"
-          style={{ 
-            transformStyle: "preserve-3d",
-            perspective: "1200px",
-          }}
-        >
-          <motion.img
-            src={slide.image}
-            alt={slide.title}
-            className="w-full h-full object-cover rounded-lg shadow-2xl"
-            animate={{ scale: imageScale }}
-            transition={{ duration: 8, ease: "linear" }}
-          />
-          {/* Modern gradient overlay with multiple layers */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-primary/40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--primary)/0.3)_100%)]" />
-        </motion.div>
-      </AnimatePresence>
+      {/* Background Images with 3D Cube Rotation effect */}
+      <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.div
+            key={currentSlide}
+            custom={direction}
+            variants={imageVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              type: "spring",
+              stiffness: 60,
+              damping: 18,
+              mass: 1.2,
+            }}
+            className="absolute inset-0"
+            style={{ 
+              transformStyle: "preserve-3d",
+              transformOrigin: "center center",
+              backfaceVisibility: "hidden",
+            }}
+          >
+            <motion.img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+              animate={{ scale: imageScale }}
+              transition={{ duration: 8, ease: "linear" }}
+            />
+            {/* Modern gradient overlay with multiple layers */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-primary/40" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--primary)/0.3)_100%)]" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">

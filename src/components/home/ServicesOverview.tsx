@@ -84,9 +84,22 @@ const services = [
   },
 ];
 
-// Flip Card Component
+// Enhanced 3D Flip Card Component with dynamic effects
 const FlipCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setIsFlipped(false);
+    setMousePosition({ x: 0, y: 0 });
+  };
 
   return (
     <motion.div
@@ -94,59 +107,117 @@ const FlipCard = ({ service, index }: { service: typeof services[0]; index: numb
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="h-[380px] perspective-1000"
+      className="h-[380px]"
+      style={{ perspective: "1500px" }}
       onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
     >
       <motion.div
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-        className="relative w-full h-full"
+        animate={{ 
+          rotateY: isFlipped ? 180 : mousePosition.x * 15,
+          rotateX: isFlipped ? 0 : -mousePosition.y * 15,
+          scale: isFlipped ? 1.02 : 1,
+        }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 150, 
+          damping: 20,
+          rotateY: { duration: 0.6 }
+        }}
+        className="relative w-full h-full cursor-pointer"
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of Card */}
-        <div
-          className="absolute inset-0 corporate-card overflow-hidden backface-hidden"
-          style={{ backfaceVisibility: "hidden" }}
+        <motion.div
+          className="absolute inset-0 corporate-card overflow-hidden"
+          style={{ 
+            backfaceVisibility: "hidden",
+            transformStyle: "preserve-3d",
+          }}
         >
-          {/* Image Section */}
-          <div className="relative h-40 overflow-hidden">
-            <img
+          {/* Shine effect on hover */}
+          <motion.div
+            className="absolute inset-0 z-10 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at ${50 + mousePosition.x * 100}% ${50 + mousePosition.y * 100}%, rgba(255,255,255,0.15) 0%, transparent 50%)`,
+            }}
+          />
+          
+          {/* Image Section with 3D depth */}
+          <motion.div 
+            className="relative h-40 overflow-hidden"
+            style={{ transform: "translateZ(20px)" }}
+          >
+            <motion.img
               src={service.image}
               alt={service.title}
               className="w-full h-full object-cover"
+              animate={{
+                scale: isFlipped ? 1.1 : 1,
+              }}
+              transition={{ duration: 0.4 }}
             />
             <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-40`} />
-            <div className={`absolute bottom-3 left-3 ${service.iconBg} w-11 h-11 rounded-lg flex items-center justify-center backdrop-blur-sm border border-white/20`}>
+            <motion.div 
+              className={`absolute bottom-3 left-3 ${service.iconBg} w-11 h-11 rounded-lg flex items-center justify-center backdrop-blur-sm border border-white/20`}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              style={{ transform: "translateZ(30px)" }}
+            >
               <service.icon className={`w-5 h-5 ${service.iconColor}`} />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Content Section */}
-          <div className="p-4">
+          <div className="p-4" style={{ transform: "translateZ(10px)" }}>
             <h3 className="text-base font-bold mb-2">
               {service.title}
             </h3>
             <p className="text-muted-foreground mb-3 leading-relaxed text-xs">
               {service.description}
             </p>
-            <div className="flex items-center text-primary font-semibold text-xs gap-1.5">
+            <motion.div 
+              className="flex items-center text-primary font-semibold text-xs gap-1.5"
+              animate={{ x: isFlipped ? 0 : [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
               <span>Hover for details</span>
               <ArrowRight className="w-3 h-3" />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Back of Card */}
-        <div
-          className={`absolute inset-0 ${service.bgColor} rounded-xl p-4 flex flex-col justify-between text-white backface-hidden`}
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+        {/* Back of Card with enhanced 3D */}
+        <motion.div
+          className={`absolute inset-0 ${service.bgColor} rounded-xl p-4 flex flex-col justify-between text-white overflow-hidden`}
+          style={{ 
+            backfaceVisibility: "hidden", 
+            transform: "rotateY(180deg)",
+            transformStyle: "preserve-3d",
+          }}
         >
-          <div>
+          {/* Animated background pattern */}
+          <motion.div
+            className="absolute inset-0 opacity-20"
+            animate={{ 
+              backgroundPosition: ["0% 0%", "100% 100%"],
+            }}
+            transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+            style={{
+              backgroundImage: "radial-gradient(circle at 20% 20%, white 1px, transparent 1px)",
+              backgroundSize: "30px 30px",
+            }}
+          />
+          
+          <div style={{ transform: "translateZ(20px)" }}>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center">
+              <motion.div 
+                className="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center"
+                animate={{ rotate: isFlipped ? [0, 360] : 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 <service.icon className="w-4 h-4 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-base font-bold">{service.title}</h3>
             </div>
             
@@ -154,10 +225,15 @@ const FlipCard = ({ service, index }: { service: typeof services[0]; index: numb
               {service.backDetails.map((detail, i) => (
                 <motion.li
                   key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: isFlipped ? 1 : 0, x: isFlipped ? 0 : -10 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, x: -20, rotateX: -90 }}
+                  animate={{ 
+                    opacity: isFlipped ? 1 : 0, 
+                    x: isFlipped ? 0 : -20,
+                    rotateX: isFlipped ? 0 : -90,
+                  }}
+                  transition={{ delay: i * 0.08, type: "spring", stiffness: 100 }}
                   className="flex items-center gap-1.5 text-xs"
+                  style={{ transformOrigin: "left center" }}
                 >
                   <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
                   <span>{detail}</span>
@@ -166,17 +242,24 @@ const FlipCard = ({ service, index }: { service: typeof services[0]; index: numb
             </ul>
           </div>
 
-          <Link to="/services">
-            <Button
-              variant="secondary"
-              size="sm"
-              className="w-full bg-white text-primary hover:bg-white/90 font-semibold text-xs"
-            >
-              Learn More
-              <ArrowRight className="ml-1.5 w-3 h-3" />
-            </Button>
-          </Link>
-        </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isFlipped ? 1 : 0, y: isFlipped ? 0 : 20 }}
+            transition={{ delay: 0.4 }}
+            style={{ transform: "translateZ(30px)" }}
+          >
+            <Link to="/services">
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full bg-white text-primary hover:bg-white/90 font-semibold text-xs shadow-lg"
+              >
+                Learn More
+                <ArrowRight className="ml-1.5 w-3 h-3" />
+              </Button>
+            </Link>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

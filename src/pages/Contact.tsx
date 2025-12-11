@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import PageTransition from "@/components/ui/PageTransition";
 import officeInterior from "@/assets/office-interior.jpg";
 import companyBuilding from "@/assets/company-building.jpg";
 
@@ -135,8 +136,9 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navigation />
       <main>
         {/* Hero Section with Background Image */}
         <section className="relative py-32 overflow-hidden">
@@ -521,8 +523,9 @@ const Contact = () => {
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 

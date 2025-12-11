@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Target, Eye, Heart, Users, Award, TrendingUp } from "lucide-react";
 import { ImageLightbox, GalleryImage } from "@/components/ui/image-lightbox";
 import { VideoEmbed } from "@/components/ui/video-embed";
+import PageTransition from "@/components/ui/PageTransition";
 import teamPhoto from "@/assets/team-photo.jpg";
 import officeInterior from "@/assets/office-interior.jpg";
 import partnership from "@/assets/partnership.jpg";
@@ -30,8 +31,9 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Navigation />
       <main>
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary via-primary to-primary/90 text-white">
@@ -349,7 +351,8 @@ const About = () => {
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
       />
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

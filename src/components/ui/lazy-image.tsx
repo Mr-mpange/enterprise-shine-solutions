@@ -47,13 +47,21 @@ export const LazyImage = ({
       className={`relative overflow-hidden ${className}`}
       onClick={onClick}
     >
-      {/* Placeholder */}
+      {/* Shimmer Skeleton */}
       <div
         className={`absolute inset-0 ${placeholderColor} ${
           isLoaded ? "opacity-0" : "opacity-100"
-        } transition-opacity duration-300`}
+        } transition-opacity duration-500`}
       >
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted" />
       </div>
 
       {/* Actual Image */}

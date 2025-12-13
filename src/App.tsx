@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { AnimatePresence } from "framer-motion";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { Preloader } from "@/components/ui/Preloader";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -38,8 +40,10 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <Preloader />
         <BrowserRouter>
           <ScrollProgress />
+          <ScrollToTop />
           <AnimatedRoutes />
         </BrowserRouter>
       </TooltipProvider>

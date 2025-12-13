@@ -118,6 +118,32 @@ All colors MUST be HSL.
   .corporate-card {
     @apply bg-card rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-300;
   }
+  
+  /* Micro-interaction utilities */
+  .interactive-link {
+    @apply relative inline-block transition-all duration-300;
+  }
+  
+  .interactive-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 origin-right transition-transform duration-300;
+  }
+  
+  .interactive-link:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+  
+  .click-feedback {
+    @apply transition-all duration-150 active:scale-95 active:opacity-90;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)];
+  }
+  
+  .hover-bounce {
+    @apply transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
 }
 
 @layer base {

@@ -9,11 +9,9 @@ import PageTransition from "@/components/ui/PageTransition";
 import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
-import tailoringImage from "@/assets/tailoring-services.jpg";
 import fireTraining from "@/assets/fire-training.jpg";
 import pestInspection from "@/assets/pest-inspection.jpg";
 import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
-import uniformShowcase from "@/assets/uniform-showcase.jpg";
 import happyClients from "@/assets/happy-clients.jpg";
 
 const Projects = () => {
@@ -43,13 +41,7 @@ const Projects = () => {
       description: "Daily office cleaning and maintenance for modern tech company headquarters.",
       client: "Tech Solutions Tanzania",
     },
-    {
-      title: "Bank Staff Uniform Production",
-      category: "tailoring",
-      image: tailoringImage,
-      description: "Custom corporate uniforms for 150+ banking staff across 5 branches.",
-      client: "National Bank of Tanzania",
-    },
+
     {
       title: "Industrial Complex Fire Training",
       category: "fire",
@@ -71,13 +63,7 @@ const Projects = () => {
       description: "Post-construction deep cleaning and ongoing maintenance for shopping mall.",
       client: "City Mall Dar",
     },
-    {
-      title: "Security Uniforms & Gear",
-      category: "tailoring",
-      image: uniformShowcase,
-      description: "Reflective safety uniforms and protective gear for security company.",
-      client: "SecureGuard Services",
-    },
+
     {
       title: "Corporate Office Fire Safety Audit",
       category: "fire",
@@ -92,19 +78,34 @@ const Projects = () => {
       description: "Monthly pest control and sanitation services for restaurant chain.",
       client: "Fine Dining Group",
     },
-    {
-      title: "Hotel Chain Uniform Program",
-      category: "tailoring",
-      image: tailoringImage,
-      description: "Complete uniform design and production for hospitality staff across 3 hotels.",
-      client: "Luxury Hotels Tanzania",
-    },
+
     {
       title: "Factory Floor Cleaning",
       category: "cleaning",
       image: cleaningImage,
       description: "Industrial cleaning and maintenance services for manufacturing facility.",
       client: "Production Industries Ltd",
+    },
+    {
+      title: "Office Complex Waste Management",
+      category: "waste-management",
+      image: cleaningImage,
+      description: "Regular waste collection and disposal services for multi-story office complex.",
+      client: "Business Park Tanzania",
+    },
+    {
+      title: "Hospital Waste Collection Program",
+      category: "waste-management",
+      image: beforeAfterCleaning,
+      description: "Non-hazardous waste collection and proper disposal for healthcare facility.",
+      client: "City Medical Center",
+    },
+    {
+      title: "Shopping Mall Waste Management",
+      category: "waste-management",
+      image: cleaningImage,
+      description: "Comprehensive waste collection and transportation services for retail complex.",
+      client: "Mlimani City Mall",
     },
   ];
 
@@ -113,7 +114,7 @@ const Projects = () => {
     { id: "fire", label: "Fire Services" },
     { id: "fumigation", label: "Fumigation" },
     { id: "cleaning", label: "Cleaning" },
-    { id: "tailoring", label: "Tailoring" },
+    { id: "waste-management", label: "Waste Management" },
   ];
 
   const filteredProjects = activeFilter === "all" 
@@ -147,7 +148,7 @@ const Projects = () => {
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Projects</h1>
               <p className="text-xl text-white/90 leading-relaxed">
-                Discover the quality and excellence we deliver across fire safety, fumigation, cleaning, and tailoring services.
+                Discover the quality and excellence we deliver across fire safety, fumigation, cleaning, and waste management services.
               </p>
             </motion.div>
           </div>

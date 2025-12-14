@@ -72,8 +72,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["info@company.co.tz", "support@company.co.tz"],
-      action: "mailto:info@company.co.tz",
+      details: ["info@pisoninvestment.co.tz", "support@pisoninvestment.co.tz"],
+      action: "mailto:info@pisoninvestment.co.tz",
       actionLabel: "Send Email",
       gradient: "from-secondary to-secondary/80",
     },
@@ -310,7 +310,7 @@ const Contact = () => {
                             <SelectItem value="fire">🔥 Fire Services & Safety</SelectItem>
                             <SelectItem value="fumigation">🐜 Fumigation & Pest Control</SelectItem>
                             <SelectItem value="cleaning">🧹 General Cleanliness</SelectItem>
-                            <SelectItem value="tailoring">👔 Ushanaji (Tailoring)</SelectItem>
+                            <SelectItem value="waste-management">🗑️ Waste Management</SelectItem>
                             <SelectItem value="multiple">📦 Multiple Services</SelectItem>
                           </SelectContent>
                         </Select>

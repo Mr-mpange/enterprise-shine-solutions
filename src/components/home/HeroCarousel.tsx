@@ -7,7 +7,7 @@ import heroBanner from "@/assets/hero-banner.jpg";
 import fireServices from "@/assets/fire-services.jpg";
 import fumigationServices from "@/assets/fumigation-services.jpg";
 import cleaningServices from "@/assets/cleaning-services.jpg";
-import tailoringServices from "@/assets/tailoring-services.jpg";
+
 
 const slides = [
   {
@@ -15,7 +15,7 @@ const slides = [
     icon: Shield,
     badge: "Trusted by 500+ Businesses",
     title: "Complete Corporate Solutions for Your Business",
-    description: "From fire safety to fumigation, cleaning to custom uniforms – we deliver professional services that keep your business running smoothly and safely.",
+    description: "From fire safety to fumigation, cleaning to waste management – we deliver professional services that keep your business running smoothly and safely.",
     cta: "Request Service",
     ctaLink: "/contact",
   },
@@ -46,15 +46,7 @@ const slides = [
     cta: "Schedule Service",
     ctaLink: "/contact",
   },
-  {
-    image: tailoringServices,
-    icon: Scissors,
-    badge: "Custom Uniforms",
-    title: "Corporate Uniform Production",
-    description: "Custom-designed professional uniforms, safety wear, and branded apparel that represent your company's identity.",
-    cta: "Design Now",
-    ctaLink: "/contact",
-  },
+
 ];
 
 // Typewriter component for auto-typing effect

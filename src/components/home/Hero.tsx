@@ -38,7 +38,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-2xl">
-              From fire safety to fumigation, cleaning to custom uniforms – we deliver professional services that keep your business running smoothly and safely.
+              From fire safety to fumigation, cleaning to waste management – we deliver professional services that keep your business running smoothly and safely.
             </p>
 
             {/* CTA Buttons */}

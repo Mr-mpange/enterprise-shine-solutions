@@ -36,9 +36,9 @@ const Navigation = () => {
               <Phone className="w-4 h-4" />
               +255 123 456 789
             </a>
-            <a href="mailto:info@company.co.tz" className="flex items-center gap-2 hover:text-secondary transition-colors">
+            <a href="mailto:info@pisoninvestment.co.tz" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Mail className="w-4 h-4" />
-              info@company.co.tz
+              info@pisoninvestment.co.tz
             </a>
           </div>
           <div className="text-sm">
@@ -59,12 +59,14 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">MS</span>
-              </div>
+              <img 
+                src="/placeholder.svg" 
+                alt="PISON INVESTMENT COMPANY Logo" 
+                className="w-12 h-12 object-contain"
+              />
               <div>
-                <div className="text-xl font-bold text-foreground">MultiService</div>
-                <div className="text-xs text-muted-foreground">Professional Solutions</div>
+                <div className="text-xl font-bold text-foreground">PISON INVESTMENT</div>
+                <div className="text-xs text-muted-foreground">COMPANY</div>
               </div>
             </Link>
 

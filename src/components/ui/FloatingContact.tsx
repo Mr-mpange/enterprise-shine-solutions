@@ -23,7 +23,7 @@ const FloatingContact = () => {
     "I need a quote for fire safety services",
     "I'm interested in fumigation services",
     "I want to inquire about cleaning services",
-    "I need custom uniforms for my team",
+    "I need waste management services",
   ];
 
   const handleSendMessage = (msg: string) => {

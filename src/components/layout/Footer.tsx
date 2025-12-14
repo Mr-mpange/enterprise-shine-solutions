@@ -8,7 +8,7 @@ const Footer = () => {
     { name: "Fire Services", path: "/services#fire" },
     { name: "Fumigation", path: "/services#fumigation" },
     { name: "General Cleanliness", path: "/services#cleaning" },
-    { name: "Ushanaji (Tailoring)", path: "/services#tailoring" },
+    { name: "Waste Management", path: "/services#waste-management" },
   ];
 
   const quickLinks = [
@@ -25,16 +25,18 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">MS</span>
-              </div>
+              <img 
+                src="/placeholder.svg" 
+                alt="PISON INVESTMENT COMPANY Logo" 
+                className="w-12 h-12 object-contain"
+              />
               <div>
-                <div className="text-lg font-bold">MultiService</div>
-                <div className="text-sm opacity-80">Professional Solutions</div>
+                <div className="text-lg font-bold">PISON INVESTMENT</div>
+                <div className="text-sm opacity-80">COMPANY</div>
               </div>
             </div>
             <p className="text-sm opacity-90 mb-6 leading-relaxed">
-              Your trusted partner for comprehensive fire safety, fumigation, cleaning, and tailoring services. Excellence delivered with every project.
+              Your trusted partner for comprehensive fire safety, fumigation, cleaning, and waste management services. Excellence delivered with every project.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 bg-white/10 hover:bg-secondary rounded-full flex items-center justify-center transition-colors">
@@ -106,8 +108,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-secondary" />
-                <a href="mailto:info@company.co.tz" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
-                  info@company.co.tz
+                <a href="mailto:info@pisoninvestment.co.tz" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
+                  info@pisoninvestment.co.tz
                 </a>
               </li>
             </ul>
@@ -117,7 +119,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm opacity-75">
-            © {currentYear} MultiService Professional Solutions. All rights reserved.
+            © {currentYear} PISON INVESTMENT COMPANY. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm opacity-75">
             <a href="#" className="hover:opacity-100 transition-opacity">Privacy Policy</a>

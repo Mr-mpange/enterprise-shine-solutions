@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Flame, Bug, Sparkles, Shirt, ArrowRight, CheckCircle2, Users, Clock, Award } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Flame, Bug, Sparkles, Trash2, ArrowRight, CheckCircle2, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import fireServices from "@/assets/fire-services.jpg";
 import fumigationServices from "@/assets/fumigation-services.jpg";
 import cleaningServices from "@/assets/cleaning-services.jpg";
-import tailoringServices from "@/assets/tailoring-services.jpg";
+
 import { CountUp } from "./StatsCounter";
 
 const services = [
@@ -48,8 +48,8 @@ const services = [
   },
   {
     icon: Sparkles,
-    title: "General Cleanliness",
-    description: "Comprehensive cleaning services for offices, homes, and industrial facilities with trained professionals.",
+    title: "General Cleanliness & Waste Management",
+    description: "Comprehensive cleaning services and waste management solutions for offices, homes, and industrial facilities.",
     color: "from-blue-500 to-cyan-500",
     iconBg: "bg-blue-500/10",
     iconColor: "text-blue-600",
@@ -57,30 +57,30 @@ const services = [
     image: cleaningServices,
     backDetails: [
       "Office & Commercial Cleaning",
-      "Post-Construction Cleanup",
+      "Non-Hazardous Waste Collection",
+      "Waste Transportation to Dumps",
       "Deep Cleaning Services",
-      "Window & Facade Cleaning",
       "Sanitization & Disinfection",
     ],
     stats: { projects: 380, clients: 200, experience: 10 },
   },
   {
-    icon: Shirt,
-    title: "Ushanaji (Tailoring)",
-    description: "Custom corporate uniforms, safety gear, and branded workwear with professional tailoring services.",
-    color: "from-purple-500 to-pink-500",
-    iconBg: "bg-purple-500/10",
-    iconColor: "text-purple-600",
-    bgColor: "bg-gradient-to-br from-purple-600 to-pink-500",
-    image: tailoringServices,
+    icon: Trash2,
+    title: "Waste Management",
+    description: "Professional waste collection and disposal services for non-hazardous waste from various locations to authorized dumps.",
+    color: "from-emerald-500 to-teal-500",
+    iconBg: "bg-emerald-500/10",
+    iconColor: "text-emerald-600",
+    bgColor: "bg-gradient-to-br from-emerald-600 to-teal-500",
+    image: cleaningServices,
     backDetails: [
-      "Corporate Uniform Design",
-      "Safety Workwear Production",
-      "Branded Apparel",
-      "Bulk Order Capabilities",
-      "Custom Fitting Services",
+      "Non-Hazardous Waste Collection",
+      "Scheduled Pickup Services",
+      "Waste Transportation",
+      "Authorized Dump Disposal",
+      "Environmental Compliance",
     ],
-    stats: { projects: 150, clients: 95, experience: 8 },
+    stats: { projects: 200, clients: 150, experience: 8 },
   },
 ];
 
@@ -88,6 +88,7 @@ const services = [
 const FlipCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -247,17 +248,21 @@ const FlipCard = ({ service, index }: { service: typeof services[0]; index: numb
             animate={{ opacity: isFlipped ? 1 : 0, y: isFlipped ? 0 : 20 }}
             transition={{ delay: 0.4 }}
             style={{ transform: "translateZ(30px)" }}
+            className="pointer-events-auto relative z-50"
           >
-            <Link to="/services">
-              <Button
-                variant="secondary"
-                size="sm"
-                className="w-full bg-white text-primary hover:bg-white/90 font-semibold text-xs shadow-lg"
-              >
-                Learn More
-                <ArrowRight className="ml-1.5 w-3 h-3" />
-              </Button>
-            </Link>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="w-full bg-white text-primary hover:bg-white/90 font-semibold text-xs shadow-lg"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                navigate('/services');
+              }}
+            >
+              Learn More
+              <ArrowRight className="ml-1.5 w-3 h-3" />
+            </Button>
           </motion.div>
         </motion.div>
       </motion.div>

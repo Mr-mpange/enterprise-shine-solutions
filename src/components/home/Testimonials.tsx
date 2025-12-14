@@ -41,7 +41,7 @@ const testimonials = [
     name: "Grace Kimani",
     company: "Nairobi Fashion House",
     role: "Creative Director",
-    content: "The tailoring quality exceeded our expectations. Our staff uniforms are now a talking point with clients. Exceptional craftsmanship!",
+    content: "The waste management service exceeded our expectations. Our facility is now cleaner and more organized. Exceptional service!",
     rating: 5,
     hasVideo: false,
     avatar: "GK",

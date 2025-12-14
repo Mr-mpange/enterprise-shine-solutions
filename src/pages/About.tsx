@@ -71,7 +71,7 @@ const About = () => {
                   Excellence in Service Since 2008
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  MultiService Professional Solutions was founded with a vision to provide comprehensive corporate services under one trusted brand. What started as a fire safety equipment supplier has grown into a multi-service company serving over 500 businesses across Tanzania.
+                  PISON INVESTMENT COMPANY was founded with a vision to provide comprehensive corporate services under one trusted brand. What started as a fire safety equipment supplier has grown into a multi-service company serving over 500 businesses across Tanzania.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   Today, we pride ourselves on delivering integrated solutions that help businesses operate safely, maintain clean environments, and present a professional image through our diverse service offerings.
@@ -142,7 +142,7 @@ const About = () => {
               <VideoEmbed
                 videoId="dQw4w9WgXcQ"
                 platform="youtube"
-                title="About MultiService Professional Solutions"
+                title="About PISON INVESTMENT COMPANY"
               />
             </div>
           </div>
@@ -318,7 +318,7 @@ const About = () => {
                 { year: "2008", title: "Company Founded", desc: "Started as a fire safety equipment supplier" },
                 { year: "2012", title: "Service Expansion", desc: "Added fumigation and pest control services" },
                 { year: "2016", title: "ISO Certification", desc: "Achieved ISO 9001:2015 quality management certification" },
-                { year: "2019", title: "Tailoring Division", desc: "Launched custom uniform production services" },
+                { year: "2019", title: "Waste Management Division", desc: "Launched comprehensive waste collection and disposal services" },
                 { year: "2023", title: "500+ Clients", desc: "Reached milestone of serving 500+ businesses across Tanzania" },
               ].map((milestone, index) => (
                 <motion.div

@@ -17,8 +17,8 @@ const videos = [
   {
     id: "M7lc1UVf-VE", // Replace with actual video IDs
     platform: "youtube" as const,
-    title: "Uniform Design & Production",
-    description: "From concept to delivery - our tailoring excellence showcased.",
+    title: "Waste Management Solutions",
+    description: "Professional waste collection and disposal services showcased.",
   },
 ];
 

@@ -3,16 +3,14 @@ import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Flame, Bug, Sparkles, Shirt, CheckCircle, ArrowRight } from "lucide-react";
+import { Flame, Bug, Sparkles, Trash2, CheckCircle, ArrowRight } from "lucide-react";
 import PageTransition from "@/components/ui/PageTransition";
 import fireImage from "@/assets/fire-services.jpg";
 import fumigationImage from "@/assets/fumigation-services.jpg";
 import cleaningImage from "@/assets/cleaning-services.jpg";
-import tailoringImage from "@/assets/tailoring-services.jpg";
 import fireTraining from "@/assets/fire-training.jpg";
 import pestInspection from "@/assets/pest-inspection.jpg";
 import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
-import uniformShowcase from "@/assets/uniform-showcase.jpg";
 
 const Services = () => {
   const services = [
@@ -60,37 +58,37 @@ const Services = () => {
       title: "General Cleanliness & Environmental Care",
       image: cleaningImage,
       galleryImage: beforeAfterCleaning,
-      description: "Professional cleaning services tailored to meet the unique needs of your facility with trained staff and modern equipment.",
+      description: "Professional cleaning services and waste management tailored to meet the unique needs of your facility with trained staff and modern equipment.",
       features: [
         "Office Cleaning Services",
         "Domestic Cleaning",
         "Industrial Facility Cleaning",
+        "Non-Hazardous Waste Collection",
         "Post-Construction Cleaning",
         "Deep Cleaning Services",
-        "Floor Polishing & Maintenance",
         "Window & Glass Cleaning",
-        "Landscaping & Garden Maintenance",
+        "Waste Transportation to Dumps",
       ],
       color: "from-blue-500 to-cyan-500",
     },
     {
-      id: "tailoring",
-      icon: Shirt,
-      title: "Ushanaji (Tailoring & Uniform Production)",
-      image: tailoringImage,
-      galleryImage: uniformShowcase,
-      description: "Custom tailoring services for corporate uniforms, safety gear, and branded workwear to enhance your professional image.",
+      id: "waste-management",
+      icon: Trash2,
+      title: "Waste Management Services",
+      image: cleaningImage,
+      galleryImage: beforeAfterCleaning,
+      description: "Professional waste collection and disposal services for non-hazardous waste from various locations to authorized disposal sites.",
       features: [
-        "Corporate Uniform Design & Production",
-        "Safety Uniforms (Reflective Gear, Overalls)",
-        "School Uniforms",
-        "Hospitality Uniforms",
-        "Security Guard Uniforms",
-        "Medical Scrubs & Lab Coats",
-        "Custom Branding & Embroidery",
-        "Uniform Maintenance & Repair",
+        "Non-Hazardous Waste Collection",
+        "Scheduled Pickup Services",
+        "Waste Sorting & Segregation",
+        "Transportation to Authorized Dumps",
+        "Environmental Compliance",
+        "Waste Management Consultation",
+        "Regular Service Contracts",
+        "Emergency Waste Removal",
       ],
-      color: "from-purple-500 to-pink-500",
+      color: "from-emerald-500 to-teal-500",
     },
   ];
 
@@ -110,7 +108,7 @@ const Services = () => {
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
               <p className="text-xl text-white/90 leading-relaxed">
-                Comprehensive solutions for fire safety, pest control, cleaning, and professional uniforms – all under one trusted brand.
+                Comprehensive solutions for fire safety, pest control, cleaning, and waste management – all under one trusted brand.
               </p>
             </motion.div>
           </div>

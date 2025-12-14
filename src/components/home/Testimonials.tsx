@@ -4,16 +4,7 @@ import { useState, useEffect } from "react";
 import happyClients from "@/assets/happy-clients.jpg";
 
 const testimonials = [
-  {
-    name: "John Mwangi",
-    company: "ABC Manufacturing Ltd",
-    role: "Operations Manager",
-    content: "Their fire safety services are exceptional. Professional team, thorough inspection, and quick installation. We feel much safer now.",
-    rating: 5,
 
-    avatar: "JM",
-    gradient: "from-orange-500 to-red-500",
-  },
   {
     name: "Sarah Hassan",
     company: "Tech Solutions Tanzania",

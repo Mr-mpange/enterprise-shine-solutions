@@ -20,13 +20,7 @@ const Projects = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const projects = [
-    {
-      title: "ABC Manufacturing Fire Safety Upgrade",
-      category: "fire",
-      image: fireImage,
-      description: "Complete fire safety system installation including alarms, sprinklers, and equipment.",
-      client: "ABC Manufacturing Ltd",
-    },
+
     {
       title: "Grand Hotel Pest Control Program",
       category: "fumigation",

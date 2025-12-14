@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Quote, Play, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
-import { VideoModal } from "@/components/ui/video-embed";
 import happyClients from "@/assets/happy-clients.jpg";
 
 const testimonials = [
@@ -11,8 +10,7 @@ const testimonials = [
     role: "Operations Manager",
     content: "Their fire safety services are exceptional. Professional team, thorough inspection, and quick installation. We feel much safer now.",
     rating: 5,
-    hasVideo: true,
-    videoId: "dQw4w9WgXcQ",
+
     avatar: "JM",
     gradient: "from-orange-500 to-red-500",
   },
@@ -22,7 +20,6 @@ const testimonials = [
     role: "CEO",
     content: "Outstanding fumigation service! They handled our office pest problem efficiently and with minimal disruption to our operations.",
     rating: 5,
-    hasVideo: false,
     avatar: "SH",
     gradient: "from-green-500 to-teal-500",
   },
@@ -32,8 +29,6 @@ const testimonials = [
     role: "Facilities Director",
     content: "We've been using their cleaning services for 3 years. Consistently reliable, professional, and high-quality work every time.",
     rating: 5,
-    hasVideo: true,
-    videoId: "jNQXAC9IVRw",
     avatar: "MO",
     gradient: "from-blue-500 to-purple-500",
   },
@@ -43,7 +38,6 @@ const testimonials = [
     role: "Creative Director",
     content: "The waste management service exceeded our expectations. Our facility is now cleaner and more organized. Exceptional service!",
     rating: 5,
-    hasVideo: false,
     avatar: "GK",
     gradient: "from-pink-500 to-rose-500",
   },
@@ -53,8 +47,6 @@ const testimonials = [
     role: "Safety Officer",
     content: "Best fire safety partner we've ever had. Their training programs are comprehensive and their response time is remarkable.",
     rating: 5,
-    hasVideo: true,
-    videoId: "M7lc1UVf-VE",
     avatar: "DN",
     gradient: "from-amber-500 to-orange-500",
   },
@@ -62,10 +54,7 @@ const testimonials = [
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [videoModal, setVideoModal] = useState<{ isOpen: boolean; videoId: string }>({
-    isOpen: false,
-    videoId: "",
-  });
+
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -170,20 +159,7 @@ const Testimonials = () => {
                         "{activeTestimonial.content}"
                       </blockquote>
 
-                      {/* Video Button */}
-                      {activeTestimonial.hasVideo && activeTestimonial.videoId && (
-                        <motion.button
-                          onClick={() => setVideoModal({ isOpen: true, videoId: activeTestimonial.videoId! })}
-                          className="flex items-center gap-2 text-primary hover:text-primary/80 mb-5 group transition-all"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className="w-9 h-9 bg-primary rounded-full flex items-center justify-center shadow-md shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
-                            <Play className="w-4 h-4 fill-white text-white ml-0.5" />
-                          </div>
-                          <span className="font-semibold text-sm">Watch Video Testimonial</span>
-                        </motion.button>
-                      )}
+
 
                       {/* Author Info */}
                       <div className="flex items-center gap-3">
@@ -307,13 +283,7 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
-      <VideoModal
-        videoId={videoModal.videoId}
-        platform="youtube"
-        isOpen={videoModal.isOpen}
-        onClose={() => setVideoModal({ isOpen: false, videoId: "" })}
-      />
+
     </section>
   );
 };

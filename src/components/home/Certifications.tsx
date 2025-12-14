@@ -4,23 +4,23 @@ import { Shield, Award, FileCheck, CheckCircle } from "lucide-react";
 const certifications = [
   {
     icon: Shield,
-    title: "ISO 9001:2015",
-    description: "Quality Management System",
+    title: "Fire Safety Certificate",
+    description: "Fire Protection Systems",
   },
   {
     icon: FileCheck,
-    title: "OSHA Certified",
-    description: "Occupational Safety & Health",
+    title: "Fumigation Certificate",
+    description: "Pest Control & Fumigation",
   },
   {
     icon: Award,
-    title: "Fire Safety Council",
-    description: "Accredited Member",
+    title: "Waste Management License",
+    description: "Environmental Protection",
   },
   {
     icon: CheckCircle,
-    title: "EPA Registered",
-    description: "Environmental Protection",
+    title: "Fully Licensed",
+    description: "All Regulatory Compliance",
   },
 ];
 

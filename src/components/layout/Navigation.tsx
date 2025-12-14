@@ -32,9 +32,9 @@ const Navigation = () => {
       <div className="bg-primary text-primary-foreground py-2 hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+255123456789" className="flex items-center gap-2 hover:text-secondary transition-colors">
+            <a href="tel:+255715179901" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Phone className="w-4 h-4" />
-              +255 123 456 789
+              +255 715 179 901
             </a>
             <a href="mailto:info@pisoninvestment.co.tz" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Mail className="w-4 h-4" />
@@ -62,11 +62,11 @@ const Navigation = () => {
               <img 
                 src="/placeholder.svg" 
                 alt="PISON INVESTMENT COMPANY Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 object-contain rounded-full bg-white/10 p-2"
               />
               <div>
                 <div className="text-xl font-bold text-foreground">PISON INVESTMENT</div>
-                <div className="text-xs text-muted-foreground">COMPANY</div>
+                <div className="text-xs text-muted-foreground">LIMITED</div>
               </div>
             </Link>
 

@@ -10,7 +10,7 @@ import Certifications from "@/components/home/Certifications";
 import ClientLogos from "@/components/home/ClientLogos";
 import ServicesComparison from "@/components/home/ServicesComparison";
 import Newsletter from "@/components/home/Newsletter";
-import FloatingContact from "@/components/ui/FloatingContact";
+
 import PageTransition from "@/components/ui/PageTransition";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
@@ -50,7 +50,7 @@ const Index = () => {
           </ScrollReveal>
         </main>
         <Footer />
-        <FloatingContact />
+
       </div>
     </PageTransition>
   );

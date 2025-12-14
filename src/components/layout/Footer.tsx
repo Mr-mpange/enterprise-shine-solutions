@@ -28,11 +28,11 @@ const Footer = () => {
               <img 
                 src="/placeholder.svg" 
                 alt="PISON INVESTMENT COMPANY Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 object-contain rounded-full bg-white/10 p-2"
               />
               <div>
                 <div className="text-lg font-bold">PISON INVESTMENT</div>
-                <div className="text-sm opacity-80">COMPANY</div>
+                <div className="text-sm opacity-80">LIMITED</div>
               </div>
             </div>
             <p className="text-sm opacity-90 mb-6 leading-relaxed">
@@ -96,15 +96,17 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
-                <span className="text-sm opacity-90">
-                  123 Business Street, Dar es Salaam, Tanzania
-                </span>
+                <div className="text-sm opacity-90">
+                  <div>Dar es Salaam: PSPF Twin Tower, 22nd Floor</div>
+                  <div>Mtwara: PSSF Building, 1st Floor</div>
+                </div>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 flex-shrink-0 text-secondary" />
-                <a href="tel:+255123456789" className="text-sm opacity-90 hover:opacity-100 transition-opacity">
-                  +255 123 456 789
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-secondary" />
+                <div className="text-sm opacity-90">
+                  <div><a href="tel:+255715179901" className="hover:opacity-100 transition-opacity">+255 715 179 901</a></div>
+                  <div><a href="tel:+255784167476" className="hover:opacity-100 transition-opacity">+255 784 167 476</a></div>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0 text-secondary" />
@@ -119,7 +121,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm opacity-75">
-            © {currentYear} PISON INVESTMENT COMPANY. All rights reserved.
+            © {currentYear} Pison Investment Limited. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm opacity-75">
             <a href="#" className="hover:opacity-100 transition-opacity">Privacy Policy</a>
@@ -128,16 +130,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* WhatsApp Float Button */}
-      <a
-        href="https://wa.me/255123456789"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 bg-accent hover:bg-accent/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
-        aria-label="Contact us on WhatsApp"
-      >
-        <MessageCircle className="w-7 h-7 text-white" />
-      </a>
+
     </footer>
   );
 };

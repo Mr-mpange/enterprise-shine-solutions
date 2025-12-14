@@ -64,7 +64,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+255 123 456 789", "+255 987 654 321"],
+      details: ["+255 715 179 901", "+255 784 167 476"],
       action: "tel:+255123456789",
       actionLabel: "Call Now",
       gradient: "from-primary to-primary/80",
@@ -80,7 +80,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["123 Business Street", "Dar es Salaam, Tanzania"],
+      details: ["Dar es Salaam Office: PSPF Twin Tower, 22nd Floor", "Mtwara Office: PSSF Building, 1st Floor"],
       action: "#map",
       actionLabel: "Get Directions",
       gradient: "from-accent to-accent/80",
@@ -284,7 +284,7 @@ const Contact = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+255 123 456 789"
+                          placeholder="+255 715 179 901"
                           className="h-12 rounded-xl border-border/50 focus:border-primary"
                         />
                       </div>
@@ -428,36 +428,154 @@ const Contact = () => {
                         For urgent fire safety or pest emergencies, our team is available around the clock.
                       </p>
                       <a 
-                        href="tel:+255123456789" 
+                        href="tel:+255715179901" 
                         className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-6 py-3 rounded-xl hover:bg-white/90 transition-colors"
                       >
                         <Phone className="w-5 h-5" />
-                        +255 123 456 789
+                        +255 715 179 901
                       </a>
                     </div>
                   </div>
                 </div>
 
-                {/* WhatsApp Card */}
-                <a
-                  href="https://wa.me/255123456789?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20services"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 text-white shadow-xl hover:shadow-2xl transition-all group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <MessageCircle className="w-7 h-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-1">Chat on WhatsApp</h3>
-                      <p className="text-white/80 text-sm">Get instant responses from our team</p>
-                    </div>
-                    <ArrowRight className="w-6 h-6 ml-auto group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </a>
+
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Office Locations Map */}
+        <section id="map" className="py-24 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Our Office Locations</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Visit us at our convenient locations in Dar es Salaam and Mtwara
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Dar es Salaam Office */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="corporate-card p-8"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">Dar es Salaam Office</h3>
+                    <p className="text-muted-foreground">Main Headquarters</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 mt-0.5 text-secondary flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-foreground">PSPF Twin Tower</p>
+                      <p className="text-muted-foreground">22nd Floor, Dar es Salaam, Tanzania</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <a href="tel:+255715179901" className="text-foreground hover:text-primary transition-colors">
+                      +255 715 179 901
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <a href="mailto:info@pisoninvestment.co.tz" className="text-foreground hover:text-primary transition-colors">
+                      info@pisoninvestment.co.tz
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Mtwara Office */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="corporate-card p-8"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">Mtwara Office</h3>
+                    <p className="text-muted-foreground">Regional Branch</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 mt-0.5 text-secondary flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-foreground">PSSF Building</p>
+                      <p className="text-muted-foreground">1st Floor, Mtwara, Tanzania</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <a href="tel:+255784167476" className="text-foreground hover:text-primary transition-colors">
+                      +255 784 167 476
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <a href="mailto:info@pisoninvestment.co.tz" className="text-foreground hover:text-primary transition-colors">
+                      info@pisoninvestment.co.tz
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Interactive Map Placeholder */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-12 max-w-4xl mx-auto"
+            >
+              <div className="corporate-card p-8 text-center">
+                <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2">Interactive Map</h3>
+                <p className="text-muted-foreground mb-6">
+                  Get detailed directions to our offices using your preferred map service
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    variant="outline" 
+                    className="flex items-center gap-2"
+                    onClick={() => window.open('https://maps.google.com/?q=PSPF+Twin+Tower+Dar+es+Salaam', '_blank')}
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Dar es Salaam Office
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="flex items-center gap-2"
+                    onClick={() => window.open('https://maps.google.com/?q=PSSF+Building+Mtwara', '_blank')}
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Mtwara Office
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 

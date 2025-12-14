@@ -71,10 +71,10 @@ const About = () => {
                   Excellence in Service Since 2008
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  PISON INVESTMENT COMPANY was founded with a vision to provide comprehensive corporate services under one trusted brand. What started as a fire safety equipment supplier has grown into a multi-service company serving over 500 businesses across Tanzania.
+                  Pison Investment Limited is a leading provider of comprehensive fire protection systems and pest control services. The company is built on a strong commitment to quality, safety, innovation, and customer satisfaction.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Today, we pride ourselves on delivering integrated solutions that help businesses operate safely, maintain clean environments, and present a professional image through our diverse service offerings.
+                  With a team of highly trained professionals, Pison Investment delivers tailored solutions that meet the specific needs of each client. By leveraging modern technology and proven methodologies, the company ensures efficient service delivery while maintaining the highest safety and industry standards.
                 </p>
               </motion.div>
               <motion.div
@@ -122,6 +122,85 @@ const About = () => {
                 />
               ))}
             </motion.div>
+          </div>
+        </section>
+
+        {/* Vision, Mission & Core Values */}
+        <section className="py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl font-bold mb-4">Our Foundation</h2>
+              <p className="text-muted-foreground text-lg">The principles that guide everything we do</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* Vision */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="corporate-card p-8 text-center"
+              >
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-primary">Vision</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  To be the foremost provider of fire safety and pest control solutions, setting the industry standard for safety, reliability, and innovation.
+                </p>
+              </motion.div>
+
+              {/* Mission */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="corporate-card p-8 text-center"
+              >
+                <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-secondary">Mission</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  To protect lives and property by delivering exceptional fire safety and pest control services, fostering safe and healthy environments through expertise, dedication, and advanced technology.
+                </p>
+              </motion.div>
+
+              {/* Core Values */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="corporate-card p-8 text-center"
+              >
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-accent">Core Values</h3>
+                <ul className="text-muted-foreground text-left space-y-2">
+                  <li><strong>Customer Focus</strong> – Personalized solutions and responsive support</li>
+                  <li><strong>Quality & Safety</strong> – Strict adherence to safety and service standards</li>
+                  <li><strong>Professional Expertise</strong> – Highly trained and experienced personnel</li>
+                  <li><strong>Innovation</strong> – Use of modern tools, systems, and methodologies</li>
+                </ul>
+              </motion.div>
+            </div>
           </div>
         </section>
 

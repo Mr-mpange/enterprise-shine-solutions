@@ -40,11 +40,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Load configuration
-if (file_exists('.env.php')) {
-    include '.env.php';
-    $team_email = TEAM_EMAIL;
-    $from_email = FROM_EMAIL;
-    $company_name = COMPANY_NAME;
+if (file_exists('config.php')) {
+    include 'config.php';
+    // $team_email, $from_email, $company_name are now loaded from config.php
 } else {
     // Fallback configuration - UPDATE THESE VALUES
     $team_email = 'your-team@yourcompany.com'; // Your team's email

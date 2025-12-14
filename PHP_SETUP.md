@@ -4,26 +4,24 @@
 
 Upload these files to your Hostinger public_html directory:
 - `quote-handler.php` - The PHP script that handles form submissions
-- `.env.php` - Your email configuration (optional but recommended)
+- `config.php` - Your email settings (copy from config.php.example)
 - Your React build files (after running `npm run build`)
 
-## 2. Configure Email Settings
+## 2. Configure Email Settings (EASY WAY)
 
-### Option A: Using Environment File (Recommended)
-1. Copy `.env.php.example` to `.env.php`
-2. Edit `.env.php` with your settings:
+1. Copy `config.php.example` to `config.php`
+2. Edit `config.php` and change these 3 lines:
 ```php
-define('TEAM_EMAIL', 'your-team@yourcompany.com');
-define('FROM_EMAIL', 'noreply@yourdomain.com');  // Must be YOUR domain
-define('COMPANY_NAME', 'Your Company Name');
+$team_email = 'your-team@yourcompany.com';     // YOUR team email
+$from_email = 'noreply@yourdomain.com';        // YOUR domain email
+$company_name = 'Your Company Name';           // YOUR company name
 ```
 
-### Option B: Direct Configuration
-Edit `quote-handler.php` and update the fallback variables:
+**Example:**
 ```php
-$team_email = 'your-team@yourcompany.com';
-$from_email = 'noreply@yourdomain.com';
-$company_name = 'Your Company Name';
+$team_email = 'sales@mycompany.com';           // Where quotes go
+$from_email = 'noreply@mycompany.com';         // From your domain
+$company_name = 'My Amazing Company';          // Your business name
 ```
 
 **Important for Hostinger:**
@@ -70,7 +68,7 @@ public_html/
 ├── index.html (your React app)
 ├── assets/ (React build assets)
 ├── quote-handler.php
-├── .env.php (your configuration)
+├── config.php (your email settings)
 └── other files...
 ```
 

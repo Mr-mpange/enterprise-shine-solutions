@@ -1,33 +1,46 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
-import TeamSection from "@/components/home/TeamSection";
+// import TeamSection from "@/components/home/TeamSection";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Target, Eye, Heart, Users, Award, TrendingUp } from "lucide-react";
 import { ImageLightbox, GalleryImage } from "@/components/ui/image-lightbox";
-import { VideoEmbed } from "@/components/ui/video-embed";
+
 import PageTransition from "@/components/ui/PageTransition";
 import teamPhoto from "@/assets/team-photo.jpg";
 import officeInterior from "@/assets/office-interior.jpg";
 import partnership from "@/assets/partnership.jpg";
 import companyBuilding from "@/assets/company-building.jpg";
-import certificationsDisplay from "@/assets/certifications-display.jpg";
+// import certificationsDisplay from "@/assets/certifications-display.jpg"; // Removed - replaced with real certificates
 
 const About = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [certificateLightboxOpen, setCertificateLightboxOpen] = useState(false);
+  const [certificateLightboxIndex, setCertificateLightboxIndex] = useState(0);
 
   const galleryImages = [
     { src: companyBuilding, alt: "Company headquarters", title: "Our Modern Headquarters" },
     { src: officeInterior, alt: "Modern office interior", title: "State-of-the-Art Facilities" },
     { src: teamPhoto, alt: "Our professional team", title: "Our Professional Team" },
     { src: partnership, alt: "Professional partnership", title: "Strong Partnerships" },
-    { src: certificationsDisplay, alt: "Our certifications", title: "Industry Certifications" },
+  ];
+
+  // Certificate images for lightbox
+  const certificateImages = [
+    { src: "/Certificate1.png", alt: "Fire Safety Certificate", title: "Fire Safety Certificate - Fire Protection Systems" },
+    { src: "/fumigation.png", alt: "Fumigation Certificate", title: "Fumigation Certificate - Pest Control & Fumigation" },
+    { src: "/waste.png", alt: "Waste Management Certificate", title: "Waste Management License - Environmental Protection" },
   ];
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
+  };
+
+  const openCertificateLightbox = (index: number) => {
+    setCertificateLightboxIndex(index);
+    setCertificateLightboxOpen(true);
   };
 
   return (
@@ -204,86 +217,12 @@ const About = () => {
           </div>
         </section>
 
-        {/* Company Video */}
-        <section className="py-24 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl font-bold mb-4">Discover Our Story</h2>
-              <p className="text-muted-foreground text-lg">Watch our company journey and values</p>
-            </motion.div>
-            <div className="max-w-4xl mx-auto">
-              <VideoEmbed
-                videoId="dQw4w9WgXcQ"
-                platform="youtube"
-                title="About PISON INVESTMENT COMPANY"
-              />
-            </div>
-          </div>
-        </section>
 
-        {/* Mission, Vision, Values */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="corporate-card p-8 text-center"
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Target className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  To deliver exceptional corporate services that ensure safety, cleanliness, and professionalism for businesses across Tanzania.
-                </p>
-              </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="corporate-card p-8 text-center"
-              >
-                <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Eye className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  To be the most trusted and comprehensive corporate service provider in East Africa by 2030.
-                </p>
-              </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="corporate-card p-8 text-center"
-              >
-                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Heart className="w-8 h-8 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Values</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Excellence, Integrity, Safety, Customer Focus, and Continuous Innovation in everything we do.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* Team Section */}
-        <TeamSection />
+        {/* <TeamSection /> */}
 
         {/* Key Strengths with Images */}
         <section className="py-24 bg-muted/30">
@@ -359,21 +298,179 @@ const About = () => {
               </motion.div>
             </div>
 
-            {/* Certifications Image */}
+            {/* Certifications Gallery */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto"
+              className="max-w-7xl mx-auto"
             >
-              <GalleryImage
-                src={certificationsDisplay}
-                alt="Our certifications and awards"
-                title="Industry Awards & Certifications"
-                className="rounded-2xl h-80 shadow-xl"
-                onClick={() => openLightbox(4)}
-              />
+              <div className="text-center mb-16">
+                <div className="inline-block mb-6">
+                  <span className="text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-6 py-3 rounded-full border border-primary/20">
+                    🏆 Certified Excellence
+                  </span>
+                </div>
+                <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Our Professional Certifications
+                </h3>
+                <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
+                  Industry recognition and regulatory compliance that validates our commitment to safety, quality, and environmental responsibility
+                </p>
+              </div>
+              
+              {/* Certificates Grid */}
+              <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+                {/* Fire Safety Certificate */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="group relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="text-center mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Fire Safety Certificate</h4>
+                      <p className="text-red-600 font-medium text-sm">Fire Protection Systems</p>
+                    </div>
+                    
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(0)}>
+                      <img 
+                        src="/Certificate1.png" 
+                        alt="Fire Safety Certificate - Fire Protection Systems" 
+                        className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
+                        loading="lazy"
+                      />
+                      <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        CERTIFIED
+                      </div>
+                      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 rounded-xl flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                          <Eye className="w-6 h-6 text-gray-700" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="inline-flex items-center gap-2 text-sm text-red-600 font-medium bg-red-50 px-4 py-2 rounded-full">
+                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                        Fire Safety Compliance
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Fumigation Certificate */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="group relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="text-center mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Fumigation Certificate</h4>
+                      <p className="text-purple-600 font-medium text-sm">Pest Control & Fumigation</p>
+                    </div>
+                    
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(1)}>
+                      <img 
+                        src="/fumigation.png" 
+                        alt="Fumigation Certificate - Pest Control & Fumigation Services" 
+                        className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
+                        loading="lazy"
+                      />
+                      <div className="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        CERTIFIED
+                      </div>
+                      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 rounded-xl flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                          <Eye className="w-6 h-6 text-gray-700" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="inline-flex items-center gap-2 text-sm text-purple-600 font-medium bg-purple-50 px-4 py-2 rounded-full">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                        Pest Control Licensed
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Waste Management Certificate */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="group relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="text-center mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Waste Management License</h4>
+                      <p className="text-green-600 font-medium text-sm">Environmental Protection</p>
+                    </div>
+                    
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(2)}>
+                      <img 
+                        src="/waste.png" 
+                        alt="Waste Management Certificate - Environmental Protection" 
+                        className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
+                        loading="lazy"
+                      />
+                      <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        LICENSED
+                      </div>
+                      <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 rounded-xl flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                          <Eye className="w-6 h-6 text-gray-700" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="text-center">
+                      <div className="inline-flex items-center gap-2 text-sm text-green-600 font-medium bg-green-50 px-4 py-2 rounded-full">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        EPA Approved
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-16 text-center"
+              >
+                <div className="inline-flex flex-wrap items-center justify-center gap-8 p-8 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 rounded-3xl border border-primary/10 shadow-lg">
+                  <div className="flex items-center gap-3 text-base font-semibold text-gray-700">
+                    <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
+                    <span>Fully Licensed & Certified</span>
+                  </div>
+                  <div className="w-px h-8 bg-gray-300 hidden md:block"></div>
+                  <div className="flex items-center gap-3 text-base font-semibold text-gray-700">
+                    <Award className="w-5 h-5 text-primary" />
+                    <span>Industry Recognized</span>
+                  </div>
+                  <div className="w-px h-8 bg-gray-300 hidden md:block"></div>
+                  <div className="flex items-center gap-3 text-base font-semibold text-gray-700">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg"></div>
+                    <span>15+ Years Excellence</span>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -429,6 +526,14 @@ const About = () => {
         initialIndex={lightboxIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
+      />
+
+      {/* Certificate Lightbox */}
+      <ImageLightbox
+        images={certificateImages}
+        initialIndex={certificateLightboxIndex}
+        isOpen={certificateLightboxOpen}
+        onClose={() => setCertificateLightboxOpen(false)}
       />
       </div>
     </PageTransition>

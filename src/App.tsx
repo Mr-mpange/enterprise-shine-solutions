@@ -41,7 +41,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <Preloader />
-        <BrowserRouter basename="/enterprise-shine-solutions">
+        <BrowserRouter>
           <ScrollProgress />
           <ScrollToTop />
           <AnimatedRoutes />

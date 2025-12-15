@@ -26,7 +26,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <img 
-                src="/placeholder.svg" 
+                src="./placeholder.svg" 
                 alt="PISON INVESTMENT COMPANY Logo" 
                 className="w-12 h-12 object-contain rounded-full bg-white/10 p-2"
               />

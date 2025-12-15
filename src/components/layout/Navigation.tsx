@@ -4,6 +4,7 @@ import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import placeholderSvg from "/placeholder.svg";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,7 +61,7 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img 
-                src="./placeholder.svg" 
+                src={placeholderSvg} 
                 alt="PISON INVESTMENT COMPANY Logo" 
                 className="w-12 h-12 object-contain rounded-full bg-white/10 p-2"
               />

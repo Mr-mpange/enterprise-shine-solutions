@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, MessageCircle } from "lucide-react";
+import placeholderSvg from "/placeholder.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -26,7 +27,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <img 
-                src="./placeholder.svg" 
+                src={placeholderSvg} 
                 alt="PISON INVESTMENT COMPANY Logo" 
                 className="w-12 h-12 object-contain rounded-full bg-white/10 p-2"
               />

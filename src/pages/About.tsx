@@ -28,9 +28,9 @@ const About = () => {
 
   // Certificate images for lightbox
   const certificateImages = [
-    { src: "/Certificate1.png", alt: "Fire Safety Certificate", title: "Fire Safety Certificate - Fire Protection Systems" },
-    { src: "/fumigation.png", alt: "Fumigation Certificate", title: "Fumigation Certificate - Pest Control & Fumigation" },
-    { src: "/waste.png", alt: "Waste Management Certificate", title: "Waste Management License - Environmental Protection" },
+    { src: "./Certificate1.png", alt: "Fire Safety Certificate", title: "Fire Safety Certificate - Fire Protection Systems" },
+    { src: "./fumigation.png", alt: "Fumigation Certificate", title: "Fumigation Certificate - Pest Control & Fumigation" },
+    { src: "./waste.png", alt: "Waste Management Certificate", title: "Waste Management License - Environmental Protection" },
   ];
 
   const openLightbox = (index: number) => {
@@ -339,7 +339,7 @@ const About = () => {
                     
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(0)}>
                       <img 
-                        src="/Certificate1.png" 
+                        src="./Certificate1.png" 
                         alt="Fire Safety Certificate - Fire Protection Systems" 
                         className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
                         loading="lazy"
@@ -380,7 +380,7 @@ const About = () => {
                     
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(1)}>
                       <img 
-                        src="/fumigation.png" 
+                        src="./fumigation.png" 
                         alt="Fumigation Certificate - Pest Control & Fumigation Services" 
                         className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
                         loading="lazy"
@@ -421,7 +421,7 @@ const About = () => {
                     
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-white p-4 shadow-inner mb-6 cursor-pointer" onClick={() => openCertificateLightbox(2)}>
                       <img 
-                        src="/waste.png" 
+                        src="./waste.png" 
                         alt="Waste Management Certificate - Environmental Protection" 
                         className="w-full h-64 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" 
                         loading="lazy"

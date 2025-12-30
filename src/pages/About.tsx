@@ -278,7 +278,7 @@ const About = () => {
                     <Award className="w-7 h-7 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Certified Excellence</h3>
+                    <h3 className="text-xl font-bold mb-2">Quality Assurance</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       ISO certified with full regulatory compliance and industry accreditations
                     </p>
@@ -309,7 +309,7 @@ const About = () => {
               <div className="text-center mb-16">
                 <div className="inline-block mb-6">
                   <span className="text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-6 py-3 rounded-full border border-primary/20">
-                    🏆 Certified Excellence
+                    🏆 Professional Standards
                   </span>
                 </div>
                 <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">

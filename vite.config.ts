@@ -15,5 +15,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/",
+  base: mode === "production" ? "/enterprise-shine-solutions/" : "/",
+  publicDir: "public", // Ensure public directory is copied
 }));

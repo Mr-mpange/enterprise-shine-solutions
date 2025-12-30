@@ -152,7 +152,7 @@ const FloatingContact = () => {
                 </motion.a>
                 
                 <motion.a
-                  href="mailto:info@mtambo.co.tz"
+                  href="mailto:info@pisoninvestment.co.tz"
                   initial={{ opacity: 0, y: 20, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 20, scale: 0.8 }}

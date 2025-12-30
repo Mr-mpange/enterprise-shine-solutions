@@ -13,7 +13,7 @@ const teamMembers = [
     bio: "With over 20 years of experience in corporate services, James founded MultiService to bring professional solutions to Tanzanian businesses.",
     linkedin: "#",
     twitter: "#",
-    email: "james@multiservice.co.tz",
+    email: "james@pisoninvestment.co.tz",
   },
   {
     name: "Grace Kimaro",
@@ -22,7 +22,7 @@ const teamMembers = [
     bio: "Grace oversees all service delivery operations, ensuring quality and efficiency across our fire, fumigation, and cleaning divisions.",
     linkedin: "#",
     twitter: "#",
-    email: "grace@multiservice.co.tz",
+    email: "grace@pisoninvestment.co.tz",
   },
   {
     name: "David Okonkwo",
@@ -31,7 +31,7 @@ const teamMembers = [
     bio: "David leads our technical teams with expertise in fire safety systems, pest control, and industrial cleaning solutions.",
     linkedin: "#",
     twitter: "#",
-    email: "david@multiservice.co.tz",
+    email: "david@pisoninvestment.co.tz",
   },
   {
     name: "Amina Hassan",
@@ -40,7 +40,7 @@ const teamMembers = [
     bio: "Amina drives our brand growth and client relationships, connecting businesses with the services they need.",
     linkedin: "#",
     twitter: "#",
-    email: "amina@multiservice.co.tz",
+    email: "amina@pisoninvestment.co.tz",
   },
 ];
 

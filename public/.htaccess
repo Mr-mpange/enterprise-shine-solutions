@@ -4,12 +4,26 @@
 # Enable URL Rewriting
 RewriteEngine On
 
-# Handle Angular and React Router
-# If the requested resource doesn't exist as a file or directory
-# Serve the index.html file (which will handle the routing)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+# Force correct MIME types for assets
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType application/json .json
+    AddType image/svg+xml .svg
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+</IfModule>
+
+# Don't rewrite existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Don't rewrite asset files - let them be served directly
+RewriteRule ^assets/ - [L]
+
+# For all other requests (HTML pages), redirect to index.html for SPA routing
+RewriteRule ^(.*)$ index.html [QSA,L]
 
 # Security Headers
 <IfModule mod_headers.c>

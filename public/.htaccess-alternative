@@ -1,0 +1,21 @@
+# Alternative .htaccess for hosting providers with strict configurations
+# Use this if the main .htaccess doesn't work
+
+RewriteEngine On
+
+# Set correct MIME types
+AddType text/css .css
+AddType application/javascript .js
+
+# Method 1: Simple approach - only redirect non-existing files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]
+
+# If Method 1 doesn't work, try Method 2:
+# Comment out Method 1 above and uncomment Method 2 below
+
+# Method 2: Explicit asset handling
+# RewriteRule ^assets/.*$ - [L]
+# RewriteRule ^.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ - [L]
+# RewriteRule ^(.*)$ index.html [QSA,L]

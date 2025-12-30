@@ -7,6 +7,8 @@ import heroBanner from "@/assets/hero-banner.jpg";
 import fireServices from "@/assets/fire-services.jpg";
 import fumigationServices from "@/assets/fumigation-services.jpg";
 import cleaningServices from "@/assets/cleaning-services.jpg";
+import c1Image from "@/assets/c1.jpeg";
+import c5Image from "@/assets/c5.jpeg";
 
 
 const slides = [
@@ -29,6 +31,24 @@ const slides = [
     ctaLink: "/services",
   },
   {
+    image: c1Image,
+    icon: Flame,
+    badge: "Fire Safety Installation",
+    title: "Advanced Fire Protection Systems",
+    description: "State-of-the-art fire safety equipment installation and maintenance for maximum protection and compliance.",
+    cta: "View Projects",
+    ctaLink: "/projects",
+  },
+  {
+    image: c5Image,
+    icon: Flame,
+    badge: "Fire Safety Compliance",
+    title: "Complete Fire Safety Management",
+    description: "End-to-end fire safety services ensuring full compliance with safety regulations and industry standards.",
+    cta: "Request Service",
+    ctaLink: "/contact",
+  },
+  {
     image: fumigationServices,
     icon: Bug,
     badge: "Certified Pest Control",
@@ -46,7 +66,6 @@ const slides = [
     cta: "Schedule Service",
     ctaLink: "/contact",
   },
-
 ];
 
 // Typewriter component for auto-typing effect

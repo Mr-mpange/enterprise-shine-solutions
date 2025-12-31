@@ -21,7 +21,6 @@ const Contact = () => {
     phone: "",
     company: "",
     service: "",
-    budget: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,44 +40,80 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/quote-handler.php', {
+      // Try the PHP form first with a timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      
+      const response = await fetch('/contact-handler-advanced.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       });
 
-      const result = await response.json();
+      clearTimeout(timeoutId);
 
-      if (result.success) {
-        toast({
-          title: "Message Sent Successfully!",
-          description: "Our team will contact you within 24 hours.",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          service: "",
-          budget: "",
-          message: "",
-        });
+      if (response.ok) {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const result = await response.json();
+          
+          if (result.success) {
+            toast({
+              title: "Message Sent Successfully!",
+              description: "Our team will contact you within 24 hours.",
+            });
+            
+            setFormData({
+              name: "",
+              email: "",
+              phone: "",
+              company: "",
+              service: "",
+              message: "",
+            });
+            setIsSubmitting(false);
+            return;
+          } else {
+            throw new Error(result.message || 'Server returned error');
+          }
+        } else {
+          throw new Error('Server returned invalid response');
+        }
       } else {
-        throw new Error(result.message || 'Failed to send message');
+        throw new Error(`Server error: ${response.status}`);
       }
     } catch (error) {
       console.error('Contact form error:', error);
+      
+      // Show direct contact information when server is unavailable
       toast({
-        title: "Failed to Send Message",
-        description: "Please try again later or contact us directly.",
-        variant: "destructive",
+        title: "Contact Us Directly",
+        description: "Opening your email client... Or call us at +255 715 179 901",
+        variant: "default",
+        duration: 6000,
       });
+      
+      // Open email client with pre-filled information
+      const subject = encodeURIComponent(`Service Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Phone: ${formData.phone || 'Not provided'}\n` +
+        `Company: ${formData.company || 'Not provided'}\n` +
+        `Service: ${formData.service || 'Not specified'}\n\n` +
+        `Message:\n${formData.message}`
+      );
+      
+      setTimeout(() => {
+        window.open(`mailto:info@pisoninvestment.co.tz?subject=${subject}&body=${body}`, '_blank');
+      }, 1000);
+    } finally {
+      // Always stop the loading state
+      setIsSubmitting(false);
     }
-    
-    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -336,20 +371,6 @@ const Contact = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div>
-                        <label className="block text-sm font-semibold mb-2 text-foreground">Estimated Budget</label>
-                        <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
-                          <SelectTrigger className="h-12 rounded-xl border-border/50">
-                            <SelectValue placeholder="Select budget range" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="small">Under TZS 500,000</SelectItem>
-                            <SelectItem value="medium">TZS 500,000 - 2,000,000</SelectItem>
-                            <SelectItem value="large">TZS 2,000,000 - 10,000,000</SelectItem>
-                            <SelectItem value="enterprise">Above TZS 10,000,000</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
                     </div>
                     
                     <div>
@@ -423,18 +444,21 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                {/* Map */}
-                <div id="map" className="rounded-3xl overflow-hidden shadow-xl border border-border/50">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.4347582478495!2d39.27358431477288!3d-6.828370295068492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4b5f42b9c1c5%3A0x7e0a6f0b5f5e5f5e!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2stz!4v1234567890123"
-                    width="100%"
-                    height="250"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Office Location"
-                  />
+                {/* Map Placeholder */}
+                <div id="map" className="rounded-3xl overflow-hidden shadow-xl border border-border/50 bg-muted/50 flex items-center justify-center h-64">
+                  <div className="text-center p-8">
+                    <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Find Us Here</h3>
+                    <p className="text-muted-foreground text-sm mb-4">PSPF Twin Tower, 22nd Floor<br />Dar es Salaam, Tanzania</p>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => window.open('https://maps.google.com/?q=PSPF+Twin+Tower+Dar+es+Salaam', '_blank')}
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Open in Maps
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Emergency Card */}

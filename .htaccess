@@ -1,5 +1,5 @@
-# Apache Configuration for Single Page Application (SPA)
-# This file ensures proper routing for React Router on Apache servers
+# Apache Configuration for Pison Investment Website
+# Single Page Application (SPA) with PHP Contact Form Support
 
 # Enable URL Rewriting
 RewriteEngine On
@@ -22,6 +22,9 @@ RewriteRule ^ - [L]
 # Don't rewrite asset files - let them be served directly
 RewriteRule ^assets/ - [L]
 
+# Allow PHP files to be accessed directly (don't redirect to index.html)
+RewriteRule ^.*\.php$ - [L]
+
 # For all other requests (HTML pages), redirect to index.html for SPA routing
 RewriteRule ^(.*)$ index.html [QSA,L]
 
@@ -39,8 +42,8 @@ RewriteRule ^(.*)$ index.html [QSA,L]
     # Strict Transport Security (HTTPS only)
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     
-    # Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'"
+    # Content Security Policy - Updated to allow form submissions
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; form-action 'self'"
 </IfModule>
 
 # Compression
@@ -51,25 +54,12 @@ RewriteRule ^(.*)$ index.html [QSA,L]
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/x-font
-    AddOutputFilterByType DEFLATE application/x-font-opentype
-    AddOutputFilterByType DEFLATE application/x-font-otf
-    AddOutputFilterByType DEFLATE application/x-font-truetype
-    AddOutputFilterByType DEFLATE application/x-font-ttf
-    AddOutputFilterByType DEFLATE application/x-font-woff
-    AddOutputFilterByType DEFLATE application/x-font-woff2
-    AddOutputFilterByType DEFLATE font/opentype
-    AddOutputFilterByType DEFLATE font/otf
-    AddOutputFilterByType DEFLATE font/ttf
-    AddOutputFilterByType DEFLATE font/woff
-    AddOutputFilterByType DEFLATE font/woff2
-    AddOutputFilterByType DEFLATE image/svg+xml
-    AddOutputFilterByType DEFLATE image/x-icon
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/javascript
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
 # Browser Caching
@@ -93,18 +83,13 @@ RewriteRule ^(.*)$ index.html [QSA,L]
     # Fonts
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/x-font-woff "access plus 1 year"
-    ExpiresByType application/x-font-woff2 "access plus 1 year"
     
     # HTML
     ExpiresByType text/html "access plus 1 hour"
     
-    # Manifest
-    ExpiresByType application/manifest+json "access plus 1 week"
+    # PHP files - no caching for dynamic content
+    ExpiresByType application/x-httpd-php "access plus 0 seconds"
 </IfModule>
-
-# Error Pages (Optional)
-# ErrorDocument 404 /index.html
 
 # Prevent access to sensitive files
 <Files ~ "^\.">
@@ -112,24 +97,35 @@ RewriteRule ^(.*)$ index.html [QSA,L]
     Deny from all
 </Files>
 
-# Allow access to specific PHP files for contact form
-<Files "quote-handler.php">
+# Allow access to contact form PHP files
+<Files "contact-handler-advanced.php">
     Order allow,deny
     Allow from all
 </Files>
 
-<Files "config.php">
+<Files "test-email-setup.php">
     Order allow,deny
     Allow from all
 </Files>
 
-<Files "test-php.php">
+# Protect email configuration files
+<Files "email-config*.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Allow the main config file but protect local configs
+<Files "email-config.php">
     Order allow,deny
     Allow from all
 </Files>
 
-# Deny access to other PHP files
-<FilesMatch "\.php$">
+# Deny access to other PHP files for security
+<FilesMatch "^(?!contact-handler-advanced\.php$|test-email-setup\.php$|email-config\.php$).*\.php$">
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+# Force HTTPS (uncomment when SSL is active)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

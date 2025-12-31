@@ -1,6 +1,24 @@
+# Apache Configuration for Single Page Application (SPA)
 RewriteEngine On
-AddType text/css .css
-AddType application/javascript .js
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.html [L]
+
+# Don't rewrite existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Don't rewrite asset files
+RewriteRule ^assets/ - [L]
+
+# Allow PHP files explicitly
+RewriteRule ^quote-handler\.php$ - [L]
+RewriteRule ^config\.php$ - [L]
+RewriteRule ^test-php\.php$ - [L]
+
+# For all other requests, redirect to index.html for SPA routing
+RewriteRule ^(.*)$ index.html [QSA,L]
+
+# Basic security
+<Files ~ "^\.">
+    Order allow,deny
+    Deny from all
+</Files>

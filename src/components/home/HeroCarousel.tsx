@@ -15,7 +15,7 @@ const slides = [
   {
     image: heroBanner,
     icon: Shield,
-    badge: "Trusted by 500+ Businesses",
+    badge: "Trusted by 22 Corporate Clients",
     title: "Complete Corporate Solutions for Your Business",
     description: "From fire safety to fumigation, cleaning to waste management – we deliver professional services that keep your business running smoothly and safely.",
     cta: "Request Service",

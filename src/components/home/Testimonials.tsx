@@ -253,8 +253,8 @@ const Testimonials = () => {
             className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {[
-              { label: "Happy Clients", value: "500+" },
-              { label: "5-Star Reviews", value: "450+" },
+              { label: "Corporate Clients", value: "22" },
+              { label: "5-Star Reviews", value: "22" },
               { label: "Years Trusted", value: "15+" },
               { label: "Repeat Clients", value: "85%" },
             ].map((stat, index) => (

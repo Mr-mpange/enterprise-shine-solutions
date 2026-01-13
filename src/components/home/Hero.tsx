@@ -29,7 +29,7 @@ const Hero = () => {
             <div className="flex items-center gap-2 mb-3">
               <Shield className="w-5 h-5 text-secondary" />
               <span className="text-secondary font-semibold text-xs uppercase tracking-wider">
-                Trusted by 500+ Businesses
+                Trusted by 22 Corporate Clients
               </span>
             </div>
 

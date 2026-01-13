@@ -42,6 +42,42 @@ const teamMembers = [
     twitter: "#",
     email: "amina@pisoninvestment.co.tz",
   },
+  {
+    name: "Michael Temba",
+    title: "Fire Safety Specialist",
+    image: teamCeo,
+    bio: "Michael brings 15 years of fire safety expertise, ensuring our clients meet all safety regulations and standards.",
+    linkedin: "#",
+    twitter: "#",
+    email: "michael@pisoninvestment.co.tz",
+  },
+  {
+    name: "Sarah Mwalimu",
+    title: "Quality Assurance Manager",
+    image: teamOperations,
+    bio: "Sarah maintains our high service standards across all divisions, implementing quality control processes and client satisfaction protocols.",
+    linkedin: "#",
+    twitter: "#",
+    email: "sarah@pisoninvestment.co.tz",
+  },
+  {
+    name: "John Msigwa",
+    title: "Regional Coordinator",
+    image: teamTechnical,
+    bio: "John coordinates our nationwide operations, ensuring consistent service delivery across all regions we serve.",
+    linkedin: "#",
+    twitter: "#",
+    email: "john@pisoninvestment.co.tz",
+  },
+  {
+    name: "Fatuma Ali",
+    title: "Customer Relations Specialist",
+    image: teamMarketing,
+    bio: "Fatuma manages client relationships and ensures exceptional customer service experiences across all our service offerings.",
+    linkedin: "#",
+    twitter: "#",
+    email: "fatuma@pisoninvestment.co.tz",
+  },
 ];
 
 const TeamSection = () => {

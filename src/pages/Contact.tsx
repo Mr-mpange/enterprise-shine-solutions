@@ -169,7 +169,7 @@ const Contact = () => {
     },
     {
       q: "Are your services available nationwide?",
-      a: "We primarily serve Dar es Salaam and surrounding regions, but we can arrange services in other major cities upon request.",
+      a: "Yes, our services are available nationwide. We serve all regions across Tanzania with our comprehensive fire safety, fumigation, cleaning, and waste management solutions.",
     },
     {
       q: "What certifications do you hold?",
@@ -186,9 +186,9 @@ const Contact = () => {
   ];
 
   const stats = [
-    { icon: Building2, value: "500+", label: "Corporate Clients" },
-    { icon: Globe, value: "15+", label: "Regions Served" },
-    { icon: Users, value: "50+", label: "Team Members" },
+    { icon: Building2, value: "22", label: "Corporate Clients" },
+    { icon: Globe, value: "8", label: "Regions Saved" },
+    { icon: Users, value: "8", label: "Team Members" },
   ];
 
   return (
@@ -678,7 +678,16 @@ const Contact = () => {
               className="text-center mt-12"
             >
               <p className="text-muted-foreground mb-4">Still have questions?</p>
-              <Button variant="outline" size="lg" className="rounded-full px-8">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="rounded-full px-8"
+                onClick={() => {
+                  const subject = encodeURIComponent('Support Request');
+                  const body = encodeURIComponent('Hello,\n\nI need assistance with:\n\n[Please describe your issue or question here]\n\nThank you!');
+                  window.open(`mailto:support@pisoninvestment.co.tz?subject=${subject}&body=${body}`, '_blank');
+                }}
+              >
                 <Mail className="w-4 h-4 mr-2" />
                 Email Our Support Team
               </Button>

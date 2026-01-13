@@ -102,8 +102,8 @@ const About = () => {
                   <div className="text-sm text-muted-foreground">Years Experience</div>
                 </div>
                 <div className="corporate-card p-6 text-center">
-                  <div className="text-4xl font-bold text-secondary mb-2">500+</div>
-                  <div className="text-sm text-muted-foreground">Happy Clients</div>
+                  <div className="text-4xl font-bold text-secondary mb-2">22</div>
+                  <div className="text-sm text-muted-foreground">Corporate Clients</div>
                 </div>
                 <div className="corporate-card p-6 text-center">
                   <div className="text-4xl font-bold text-accent mb-2">1200+</div>
@@ -291,7 +291,7 @@ const About = () => {
                   <div>
                     <h3 className="text-xl font-bold mb-2">Proven Track Record</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      15+ years of consistent excellence serving 500+ satisfied clients
+                      15+ years of consistent excellence serving 22 corporate clients
                     </p>
                   </div>
                 </div>
@@ -495,7 +495,7 @@ const About = () => {
                 { year: "2012", title: "Service Expansion", desc: "Added fumigation and pest control services" },
                 { year: "2016", title: "ISO Certification", desc: "Achieved ISO 9001:2015 quality management certification" },
                 { year: "2019", title: "Waste Management Division", desc: "Launched comprehensive waste collection and disposal services" },
-                { year: "2023", title: "500+ Clients", desc: "Reached milestone of serving 500+ businesses across Tanzania" },
+                { year: "2023", title: "22 Corporate Clients", desc: "Reached milestone of serving 22 corporate businesses across Tanzania" },
               ].map((milestone, index) => (
                 <motion.div
                   key={milestone.year}

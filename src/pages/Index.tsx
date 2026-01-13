@@ -5,7 +5,7 @@ import ServicesOverview from "@/components/home/ServicesOverview";
 import StatsCounter from "@/components/home/StatsCounter";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import Testimonials from "@/components/home/Testimonials";
-
+import TeamSection from "@/components/home/TeamSection";
 import Certifications from "@/components/home/Certifications";
 import ClientLogos from "@/components/home/ClientLogos";
 import ServicesComparison from "@/components/home/ServicesComparison";
@@ -36,7 +36,9 @@ const Index = () => {
           <ScrollReveal direction="right">
             <WhyChooseUs />
           </ScrollReveal>
-
+          <ScrollReveal direction="up">
+            <TeamSection />
+          </ScrollReveal>
           <ScrollReveal direction="up">
             <Testimonials />
           </ScrollReveal>

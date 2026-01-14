@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Flame, Bug, Sparkles, Trash2, CheckCircle, ArrowRight } from "lucide-react";
 import PageTransition from "@/components/ui/PageTransition";
-import fireImage from "@/assets/fire-services.jpg";
-import fumigationImage from "@/assets/fumigation-services.jpg";
-import cleaningImage from "@/assets/cleaning-services.jpg";
-import fireTraining from "@/assets/fire-training.jpg";
-import pestInspection from "@/assets/pest-inspection.jpg";
-import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
+import fireImage from "@/assets/fire-extingusher.jpeg";
+import fumigationImage from "@/assets/pest.jpeg";
+import cleaningImage from "@/assets/cleaning2.jpg";
+import cleaningImage1 from "@/assets/cleaning1.jpg";
+import fireTraining from "@/assets/f-service.jpeg";
+import pestInspection from "@/assets/fumigation.jpeg";
+import beforeAfterCleaning from "@/assets/cleaning2.jpg";
 
 const Services = () => {
   const services = [
@@ -75,7 +76,7 @@ const Services = () => {
       id: "waste-management",
       icon: Trash2,
       title: "Waste Management Services",
-      image: cleaningImage,
+      image: cleaningImage1,
       galleryImage: beforeAfterCleaning,
       description: "Professional waste collection and disposal services for non-hazardous waste from various locations to authorized disposal sites.",
       features: [

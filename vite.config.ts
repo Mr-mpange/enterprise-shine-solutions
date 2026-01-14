@@ -8,6 +8,13 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: mode === 'development' ? {
+      // Proxy PHP requests to PHP dev server (development only)
+      '/contact-handler.php': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    } : undefined,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
@@ -16,5 +23,5 @@ export default defineConfig(({ mode }) => ({
     },
   },
   base: mode === "production" ? "/" : "/",
-  publicDir: "public", // Ensure public directory is copied
+  publicDir: "public",
 }));

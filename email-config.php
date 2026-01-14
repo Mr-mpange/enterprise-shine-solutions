@@ -11,7 +11,7 @@ return [
         'host' => 'smtp.hostinger.com', // Hostinger SMTP server
         'port' => 587,
         'username' => 'info@pisoninvestment.co.tz',
-        'password' => 'Pisoninvestment@25', // Your email password
+        'password' => getenv('SMTP_PASSWORD') ?: 'Pisoninvestment@25', // Use environment variable or fallback
         'encryption' => 'tls'
     ],
     
@@ -25,10 +25,8 @@ return [
     
     // Security settings
     'security' => [
-        'allowed_origins' => ['*'], // Change to your domain in production
-        'rate_limit' => 5, // Max emails per IP per hour
+        'allowed_origins' => ['https://pisoninvestment.co.tz', 'https://www.pisoninvestment.co.tz'],
         'honeypot_field' => 'website', // Hidden field to catch bots
-        'require_referer' => false // Set to true in production
     ]
 ];
 ?>

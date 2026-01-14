@@ -1,6 +1,14 @@
 <?php
+// Production Contact Form Handler for Pison Investment
+// Optimized for Hostinger hosting
+
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', '/home/u232077031/.logs/error_log_pisoninvestment_co_tz');
+
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://pisoninvestment.co.tz');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -17,180 +25,129 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Email configuration
-$to_email = 'your-email@example.com'; // Replace with your actual email
-$smtp_host = 'smtp.gmail.com';
-$smtp_port = 587;
-$smtp_username = 'your-gmail@gmail.com'; // Replace with your Gmail
-$smtp_password = 'your-app-password'; // Replace with your Gmail App Password
+try {
+    // Load configuration
+    $config_file = file_exists('email-config-local.php') ? 'email-config-local.php' : 'email-config.php';
+    if (!file_exists($config_file)) {
+        throw new Exception('Configuration file not found');
+    }
+    $config = include $config_file;
 
-// Get form data
-$input = json_decode(file_get_contents('php://input'), true);
+    // Get form data
+    $input = json_decode(file_get_contents('php://input'), true);
+    if (!$input) {
+        $input = $_POST;
+    }
 
-if (!$input) {
-    $input = $_POST;
-}
-
-// Validate required fields
-$required_fields = ['name', 'email', 'message'];
-foreach ($required_fields as $field) {
-    if (empty($input[$field])) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => "Field '$field' is required"]);
+    // Check honeypot field (if configured)
+    if (isset($config['security']['honeypot_field']) && !empty($input[$config['security']['honeypot_field']])) {
+        // Silently reject spam
+        echo json_encode(['success' => true, 'message' => 'Thank you for your message.']);
         exit();
     }
-}
 
-// Sanitize input
-$name = filter_var(trim($input['name']), FILTER_SANITIZE_STRING);
-$email = filter_var(trim($input['email']), FILTER_VALIDATE_EMAIL);
-$phone = isset($input['phone']) ? filter_var(trim($input['phone']), FILTER_SANITIZE_STRING) : '';
-$company = isset($input['company']) ? filter_var(trim($input['company']), FILTER_SANITIZE_STRING) : '';
-$message = filter_var(trim($input['message']), FILTER_SANITIZE_STRING);
-$service = isset($input['service']) ? filter_var(trim($input['service']), FILTER_SANITIZE_STRING) : '';
+    // Validate required fields
+    $required_fields = ['name', 'email', 'message'];
+    foreach ($required_fields as $field) {
+        if (empty($input[$field])) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => "Field '$field' is required"]);
+            exit();
+        }
+    }
 
-if (!$email) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Invalid email address']);
-    exit();
-}
+    // Sanitize and validate input
+    $name = htmlspecialchars(trim($input['name']), ENT_QUOTES, 'UTF-8');
+    $email = filter_var(trim($input['email']), FILTER_VALIDATE_EMAIL);
+    $phone = isset($input['phone']) ? htmlspecialchars(trim($input['phone']), ENT_QUOTES, 'UTF-8') : '';
+    $company = isset($input['company']) ? htmlspecialchars(trim($input['company']), ENT_QUOTES, 'UTF-8') : '';
+    $message = htmlspecialchars(trim($input['message']), ENT_QUOTES, 'UTF-8');
+    $service = isset($input['service']) ? htmlspecialchars(trim($input['service']), ENT_QUOTES, 'UTF-8') : '';
 
-// Create email content with proper formatting to avoid spam
-$subject = "New Contact Form Submission from " . $name;
+    if (!$email) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Invalid email address']);
+        exit();
+    }
 
-// HTML email body
-$html_body = "
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='UTF-8'>
-    <title>Contact Form Submission</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
-        .field { margin-bottom: 15px; }
-        .label { font-weight: bold; color: #555; }
-        .value { margin-top: 5px; }
-        .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666; }
-    </style>
-</head>
-<body>
-    <div class='container'>
-        <div class='header'>
-            <h2>New Contact Form Submission</h2>
-            <p>You have received a new message from your website contact form.</p>
-        </div>
-        
-        <div class='field'>
-            <div class='label'>Name:</div>
-            <div class='value'>" . htmlspecialchars($name) . "</div>
-        </div>
-        
-        <div class='field'>
-            <div class='label'>Email:</div>
-            <div class='value'>" . htmlspecialchars($email) . "</div>
-        </div>";
+    // Map service codes to readable names
+    $service_names = [
+        'fire' => 'Fire Services & Safety',
+        'fumigation' => 'Fumigation & Pest Control',
+        'cleaning' => 'General Cleanliness',
+        'waste-management' => 'Waste Management',
+        'multiple' => 'Multiple Services'
+    ];
+    $service_display = isset($service_names[$service]) ? $service_names[$service] : $service;
 
-if ($phone) {
-    $html_body .= "
-        <div class='field'>
-            <div class='label'>Phone:</div>
-            <div class='value'>" . htmlspecialchars($phone) . "</div>
-        </div>";
-}
+    // Create email subject - simple and natural
+    $subject = "Website inquiry from " . $name;
 
-if ($company) {
-    $html_body .= "
-        <div class='field'>
-            <div class='label'>Company:</div>
-            <div class='value'>" . htmlspecialchars($company) . "</div>
-        </div>";
-}
+    // Create professional email body - optimized to avoid spam filters
+    $email_body = "You have received a new inquiry from your website.\n\n";
+    $email_body .= "From: " . $name . "\n";
+    $email_body .= "Email: " . $email . "\n";
+    if ($phone) $email_body .= "Phone: " . $phone . "\n";
+    if ($company) $email_body .= "Company: " . $company . "\n";
+    if ($service_display) $email_body .= "Interested in: " . $service_display . "\n";
+    $email_body .= "\n" . $message . "\n\n";
+    $email_body .= "Sent on " . date('F j, Y \a\t g:i A');
 
-if ($service) {
-    $html_body .= "
-        <div class='field'>
-            <div class='label'>Service:</div>
-            <div class='value'>" . htmlspecialchars($service) . "</div>
-        </div>";
-}
+    // Email headers - improved for better deliverability
+    $headers = "From: " . $config['smtp']['username'] . "\r\n";
+    $headers .= "Reply-To: " . $email . "\r\n";
+    $headers .= "Return-Path: " . $config['smtp']['username'] . "\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    $headers .= "X-Priority: 3\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+    
+    // Additional headers to avoid spam
+    $headers .= "Message-ID: <" . time() . "-" . md5($email) . "@pisoninvestment.co.tz>\r\n";
+    $headers .= "X-Originating-IP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 
-$html_body .= "
-        <div class='field'>
-            <div class='label'>Message:</div>
-            <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
-        </div>
-        
-        <div class='footer'>
-            <p>This email was sent from your website contact form on " . date('Y-m-d H:i:s') . "</p>
-            <p>Sender IP: " . $_SERVER['REMOTE_ADDR'] . "</p>
-        </div>
-    </div>
-</body>
-</html>";
+    // Send email using PHP mail() function with additional parameters
+    $additional_params = "-f" . $config['smtp']['username']; // Set envelope sender
+    
+    // Log email attempt
+    error_log("Attempting to send email to: " . $config['to_email']);
+    error_log("From: " . $config['smtp']['username']);
+    error_log("Subject: " . $subject);
+    
+    $mail_sent = mail($config['to_email'], $subject, $email_body, $headers, $additional_params);
 
-// Plain text version
-$text_body = "New Contact Form Submission\n\n";
-$text_body .= "Name: " . $name . "\n";
-$text_body .= "Email: " . $email . "\n";
-if ($phone) $text_body .= "Phone: " . $phone . "\n";
-if ($company) $text_body .= "Company: " . $company . "\n";
-if ($service) $text_body .= "Service: " . $service . "\n";
-$text_body .= "Message: " . $message . "\n\n";
-$text_body .= "Sent on: " . date('Y-m-d H:i:s') . "\n";
-$text_body .= "Sender IP: " . $_SERVER['REMOTE_ADDR'];
+    if ($mail_sent) {
+        error_log("Contact form: Email sent successfully from $email ($name)");
+        error_log("Email headers used: " . str_replace("\r\n", " | ", $headers));
+        echo json_encode([
+            'success' => true,
+            'message' => 'Thank you for your message! We will get back to you within 24 hours.',
+            'debug' => [
+                'mail_sent' => true,
+                'to' => $config['to_email'],
+                'from' => $config['smtp']['username'],
+                'subject' => $subject
+            ]
+        ]);
+    } else {
+        error_log("Contact form: mail() function returned false");
+        error_log("Possible reasons: mail server issue, invalid headers, or spam filter");
+        throw new Exception('Failed to send email - mail() returned false');
+    }
 
-// Email headers to avoid spam
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-Type: multipart/alternative; boundary="boundary-' . md5(time()) . '"',
-    'From: "Website Contact Form" <' . $smtp_username . '>',
-    'Reply-To: ' . $email,
-    'Return-Path: ' . $smtp_username,
-    'X-Mailer: PHP/' . phpversion(),
-    'X-Priority: 3',
-    'X-MSMail-Priority: Normal',
-    'Importance: Normal'
-];
-
-$boundary = 'boundary-' . md5(time());
-
-// Create multipart message
-$email_body = "--$boundary\r\n";
-$email_body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$email_body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-$email_body .= $text_body . "\r\n\r\n";
-$email_body .= "--$boundary\r\n";
-$email_body .= "Content-Type: text/html; charset=UTF-8\r\n";
-$email_body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-$email_body .= $html_body . "\r\n\r\n";
-$email_body .= "--$boundary--";
-
-// Try to send email using mail() function first
-$mail_sent = false;
-
-if (function_exists('mail')) {
-    $mail_sent = mail($to_email, $subject, $email_body, implode("\r\n", $headers));
-}
-
-// If mail() fails or doesn't exist, try SMTP (requires additional setup)
-if (!$mail_sent) {
-    // For production, you should use PHPMailer or similar library
-    // This is a basic implementation
-    error_log("Failed to send email using mail() function");
-}
-
-if ($mail_sent) {
-    echo json_encode([
-        'success' => true,
-        'message' => 'Thank you for your message. We will get back to you soon!'
-    ]);
-} else {
+} catch (Exception $e) {
+    error_log("Contact form error: " . $e->getMessage());
+    error_log("Error trace: " . $e->getTraceAsString());
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'message' => 'Sorry, there was an error sending your message. Please try again later.'
+        'message' => 'Sorry, there was an error sending your message. Please try again later or contact us directly at info@pisoninvestment.co.tz',
+        'debug' => [
+            'error' => $e->getMessage(),
+            'file' => basename($e->getFile()),
+            'line' => $e->getLine()
+        ]
     ]);
 }
 ?>

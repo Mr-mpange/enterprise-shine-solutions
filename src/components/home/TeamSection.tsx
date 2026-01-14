@@ -3,20 +3,20 @@ import { Linkedin, Twitter, Mail, ChevronLeft, ChevronRight } from "lucide-react
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import teamCeo from "@/assets/team-ceo.jpg";
+import teamCeo from "@/assets/team-ceo.jpeg";
 import teamOperations from "@/assets/team-operations.jpg";
 import teamTechnical from "@/assets/team-technical.jpg";
 import teamMarketing from "@/assets/team-marketing.jpg";
 
 const teamMembers = [
   {
-    name: "James Mwangi",
+    name: "yassin Nelson Mwampondele ",
     title: "Chief Executive Officer",
     image: teamCeo,
     bio: "With over 20 years of experience in corporate services, James founded MultiService to bring professional solutions to Tanzanian businesses.",
     linkedin: "#",
     twitter: "#",
-    email: "james@pisoninvestment.co.tz",
+    email: "info@pisoninvestment.co.tz",
   },
   {
     name: "Grace Kimaro",

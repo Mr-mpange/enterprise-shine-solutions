@@ -44,7 +44,7 @@ const Contact = () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
       
-      const response = await fetch('/contact-handler-advanced.php', {
+      const response = await fetch('/contact-handler.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -683,9 +683,13 @@ const Contact = () => {
                 size="lg" 
                 className="rounded-full px-8"
                 onClick={() => {
-                  const subject = encodeURIComponent('Support Request');
-                  const body = encodeURIComponent('Hello,\n\nI need assistance with:\n\n[Please describe your issue or question here]\n\nThank you!');
-                  window.open(`mailto:support@pisoninvestment.co.tz?subject=${subject}&body=${body}`, '_blank');
+                  // Scroll to the contact form at the top
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  // Focus on the name field after scrolling
+                  setTimeout(() => {
+                    const nameInput = document.querySelector('input[placeholder="John Doe"]') as HTMLInputElement;
+                    if (nameInput) nameInput.focus();
+                  }, 800);
                 }}
               >
                 <Mail className="w-4 h-4 mr-2" />

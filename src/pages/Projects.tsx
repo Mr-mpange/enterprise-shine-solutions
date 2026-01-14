@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { ImageLightbox, GalleryImage } from "@/components/ui/image-lightbox";
 import { LazyImage } from "@/components/ui/lazy-image";
 import PageTransition from "@/components/ui/PageTransition";
-import fireImage from "@/assets/fire-services.jpg";
-import fumigationImage from "@/assets/fumigation-services.jpg";
-import cleaningImage from "@/assets/cleaning-services.jpg";
-import fireTraining from "@/assets/fire-training.jpg";
-import pestInspection from "@/assets/pest-inspection.jpg";
-import beforeAfterCleaning from "@/assets/before-after-cleaning.jpg";
+import fireImage from "@/assets/fire-extingusher.jpeg";
+import fumigationImage from "@/assets/pest.jpeg";
+import cleaningImage from "@/assets/man-walking-with-cleaning-cart.jpg";
+import cleaningImage1 from "@/assets/cleaning1.jpg";
+import cleaningImage2 from "@/assets/cleaning2.jpg";
+import fireTraining from "@/assets/f-service.jpeg";
+import pestInspection from "@/assets/fumigation.jpeg";
+import beforeAfterCleaning from "@/assets/full-shot-man-walking-with-cleaning-cart.jpg";
 import happyClients from "@/assets/happy-clients.jpg";
 import c2Image from "@/assets/c2.jpeg";
 import c3Image from "@/assets/c3.jpeg";
@@ -46,11 +48,11 @@ const Projects = () => {
       client: "Commercial Plaza",
     },
     {
-      title: "Grand Hotel Pest Control Program",
+      title: "fumigation pest",
       category: "fumigation",
       image: fumigationImage,
-      description: "Ongoing pest management and fumigation services for 200-room hotel facility.",
-      client: "Grand Hotel Dar es Salaam",
+      description: "Ongoing pest management and fumigation services for  cashew.",
+      client: "Mtwara",
     },
     {
       title: "Tech Solutions Office Cleaning",
@@ -67,32 +69,11 @@ const Projects = () => {
       client: "Industrial Complex Ltd",
     },
     {
-      title: "School Termite Treatment",
+      title: "cashew nut shells",
       category: "fumigation",
       image: pestInspection,
-      description: "Comprehensive termite control and prevention for educational institution.",
-      client: "Premier Academy",
-    },
-    {
-      title: "Mall Deep Cleaning Services",
-      category: "cleaning",
-      image: beforeAfterCleaning,
-      description: "Post-construction deep cleaning and ongoing maintenance for shopping mall.",
-      client: "City Mall Dar",
-    },
-    {
-      title: "Corporate Office Fire Safety Audit",
-      category: "fire",
-      image: fireImage,
-      description: "Comprehensive fire safety audit and equipment installation for corporate headquarters.",
-      client: "Finance Corporation",
-    },
-    {
-      title: "Restaurant Pest Management",
-      category: "fumigation",
-      image: fumigationImage,
-      description: "Monthly pest control and sanitation services for restaurant chain.",
-      client: "Fine Dining Group",
+      description: "Natural fumigation treatment using cashew nut shell extracts to repel and eliminate termites, ants, and other household pests through their strong insecticidal and repellent properties.",
+      client: "Mtwara",
     },
     {
       title: "Factory Floor Cleaning",
@@ -102,26 +83,54 @@ const Projects = () => {
       client: "Production Industries Ltd",
     },
     {
-      title: "Office Complex Waste Management",
-      category: "waste-management",
-      image: cleaningImage,
-      description: "Regular waste collection and disposal services for multi-story office complex.",
-      client: "Business Park Tanzania",
+      title: "Corporate Office Fire Safety Audit",
+      category: "fire",
+      image: fireImage,
+      description: "Comprehensive fire safety audit and equipment installation for corporate headquarters.",
+      client: "Finance Corporation",
     },
-    {
-      title: "Hospital Waste Collection Program",
+        {
+      title: "H Waste Collection Program",
       category: "waste-management",
-      image: beforeAfterCleaning,
+      image: cleaningImage1,
       description: "Non-hazardous waste collection and proper disposal for healthcare facility.",
       client: "City Medical Center",
     },
+    // {
+    //   title: "Restaurant Pest Management",
+    //   category: "fumigation",
+    //   image: fumigationImage,
+    //   description: "Monthly pest control and sanitation services for restaurant chain.",
+    //   client: "Fine Dining Group",
+    // },
+    // {
+    //   title: "Factory Floor Cleaning",
+    //   category: "cleaning",
+    //   image: cleaningImage,
+    //   description: "Industrial cleaning and maintenance services for manufacturing facility.",
+    //   client: "Production Industries Ltd",
+    // },
     {
-      title: "Shopping Mall Waste Management",
+      title: "Office Complex Waste Management",
       category: "waste-management",
-      image: cleaningImage,
-      description: "Comprehensive waste collection and transportation services for retail complex.",
-      client: "Mlimani City Mall",
+      image: cleaningImage2,
+      description: "Regular waste collection and disposal services for multi-story office complex.",
+      client: "Business Park Tanzania",
     },
+    // {
+    //   title: "H Waste Collection Program",
+    //   category: "waste-management",
+    //   image: cleaningImage1,
+    //   description: "Non-hazardous waste collection and proper disposal for healthcare facility.",
+    //   client: "City Medical Center",
+    // },
+    // {
+    //   title: "Shopping Mall Waste Management",
+    //   category: "waste-management",
+    //   image: cleaningImage,
+    //   description: "Comprehensive waste collection and transportation services for retail complex.",
+    //   client: "Mlimani City Mall",
+    // },
   ];
 
   const filters = [
@@ -129,7 +138,7 @@ const Projects = () => {
     { id: "fire", label: "Fire Services" },
     { id: "fumigation", label: "Fumigation" },
     { id: "cleaning", label: "Cleaning" },
-    { id: "waste-management", label: "Waste Management" },
+    // { id: "waste-management", label: "Waste Management" },
   ];
 
   const filteredProjects = activeFilter === "all" 
@@ -235,7 +244,7 @@ const Projects = () => {
 
 
         {/* Before & After Showcase */}
-        <section className="py-24 bg-muted/30">
+        {/* <section className="py-24 bg-muted/30">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -294,7 +303,7 @@ const Projects = () => {
               </motion.div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
         <section className="py-24 bg-background">

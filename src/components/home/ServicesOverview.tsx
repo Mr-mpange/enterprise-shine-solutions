@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { Flame, Bug, Sparkles, Trash2, ArrowRight, CheckCircle2, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import fireServices from "@/assets/fire-services.jpg";
-import fumigationServices from "@/assets/fumigation-services.jpg";
+import fireServices from "@/assets/why.jpeg";
+import fumigationServices from "@/assets/why.jpeg";
 import cleaningServices from "@/assets/cleaning-services.jpg";
 
 import { CountUp } from "./StatsCounter";
@@ -40,7 +40,7 @@ const services = [
     backDetails: [
       "Termite Control & Prevention",
       "Rodent Management",
-      "Insect Extermination",
+      "Insect Extermination", 
       "Eco-Friendly Treatments",
       "Regular Maintenance Programs",
     ],

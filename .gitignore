@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local configuration (don't commit passwords)
+email-config-local.php
